@@ -1,0 +1,117 @@
+{% render 'partials/head.liquid' %}
+{% render 'partials/header.liquid' %}
+
+<main class="house-detail">
+
+  <section class="house-gallery">
+    <img
+      class="gallery-main"
+      src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}"
+      alt="{{ house.street }} {{ house.house_nr }}"
+    >
+
+    <div class="gallery-side">
+      {% for image in house.gallery limit:4 %}
+        <img
+          src="https://fdnd-agency.directus.app/assets/{{ image.directus_files_id }}"
+          alt="Foto van {{ house.street }} {{ house.house_nr }}"
+        >
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="house-media">
+    <a href="#" class="media-card">📷 <span>Alle foto's</span></a>
+    <a href="#" class="media-card">📐 <span>Plattegrond</span></a>
+    <a href="#" class="media-card">🏠 <span>360° foto's</span></a>
+    <a href="#" class="media-card">🎥 <span>Video</span></a>
+  </section>
+
+  <section class="house-content">
+
+    <section class="house-header">
+      <p class="breadcrumb">{{ house.city }} / {{ house.street }}</p>
+
+      <h1>{{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}</h1>
+
+      <p class="address">{{ house.postal_code }} {{ house.city }}</p>
+
+      <h2 class="price">€ {{ house.price }} k.k.</h2>
+    </section>
+
+    <section class="house-features">
+      <div class="feature">
+        <strong>{{ house.m2 }} m²</strong>
+        <span>Wonen</span>
+      </div>
+
+      <div class="feature">
+        <strong>{{ house.m2_garden }} m²</strong>
+        <span>Perceel</span>
+      </div>
+
+      <div class="feature">
+        <strong>{{ house.rooms }}</strong>
+        <span>Kamers</span>
+      </div>
+
+      <div class="feature">
+        <strong>A</strong>
+        <span>Energielabel</span>
+      </div>
+    </section>
+
+    <section class="house-description">
+      <h2>Omschrijving</h2>
+      {{ house.description }}
+    </section>
+
+    <section class="house-extra-info">
+      <h2>Kenmerken</h2>
+
+      <div class="info-grid">
+
+        <div>
+          <h3>Overdracht</h3>
+          <p><strong>Vraagprijs:</strong> € {{ house.price }} k.k.</p>
+          <p><strong>Status:</strong> Beschikbaar</p>
+        </div>
+
+        <div>
+          <h3>Adres</h3>
+          <p><strong>Straat:</strong> {{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}</p>
+          <p><strong>Postcode:</strong> {{ house.postal_code }}</p>
+          <p><strong>Plaats:</strong> {{ house.city }}</p>
+        </div>
+
+        <div>
+          <h3>Bouw</h3>
+          <p><strong>Soort woning:</strong> Woonhuis</p>
+          <p><strong>Bouwjaar:</strong> 2020</p>
+        </div>
+
+        <div>
+          <h3>Oppervlakten</h3>
+          <p><strong>Wonen:</strong> {{ house.m2 }} m²</p>
+          <p><strong>Perceel:</strong> {{ house.m2_garden }} m²</p>
+        </div>
+
+        <div>
+          <h3>Indeling</h3>
+          <p><strong>Kamers:</strong> {{ house.rooms }}</p>
+          <p><strong>Slaapkamers:</strong> {{ house.rooms }}</p>
+        </div>
+
+        <div>
+          <h3>Energie</h3>
+          <p><strong>Energielabel:</strong> A</p>
+        </div>
+
+      </div>
+    </section>
+
+  </section>
+
+</main>
+
+{% render 'partials/footer.liquid' %}
