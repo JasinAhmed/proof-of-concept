@@ -4,6 +4,8 @@
 <main class="house-detail">
 
   <section class="house-gallery">
+    <h2>Foto's</h2>
+
     <img
       class="gallery-main"
       src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}"
@@ -21,25 +23,49 @@
   </section>
 
   <section class="house-media">
-    <a href="#" class="media-card">📷 <span>Alle foto's</span></a>
-    <a href="#" class="media-card">📐 <span>Plattegrond</span></a>
-    <a href="#" class="media-card">🏠 <span>360° foto's</span></a>
-    <a href="#" class="media-card">🎥 <span>Video</span></a>
+    <h2>Media</h2>
+
+    <a href="#" class="media-card">
+      📷 <span>Alle foto's</span>
+    </a>
+
+    <a href="#" class="media-card">
+      📐 <span>Plattegrond</span>
+    </a>
+
+    <a href="#" class="media-card">
+      🏠 <span>360° foto's</span>
+    </a>
+
+    <a href="#" class="media-card">
+      🎥 <span>Video</span>
+    </a>
   </section>
 
   <section class="house-content">
 
-    <section class="house-header">
-      <p class="breadcrumb">{{ house.city }} / {{ house.street }}</p>
+    <header class="house-header">
+      <p class="breadcrumb">
+        {{ house.city }} / {{ house.street }}
+      </p>
 
-      <h1>{{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}</h1>
+      <h1>
+        {{ house.street }}
+        {{ house.house_nr }}{{ house.nr_addition }}
+      </h1>
 
-      <p class="address">{{ house.postal_code }} {{ house.city }}</p>
+      <p class="address">
+        {{ house.postal_code }} {{ house.city }}
+      </p>
 
-      <h2 class="price">€ {{ house.price }} k.k.</h2>
-    </section>
+      <p class="price">
+        € {{ house.price }} k.k.
+      </p>
+    </header>
 
     <section class="house-features">
+      <h2>Belangrijkste kenmerken</h2>
+
       <div class="feature">
         <strong>{{ house.m2 }} m²</strong>
         <span>Wonen</span>
@@ -63,6 +89,7 @@
 
     <section class="house-description">
       <h2>Omschrijving</h2>
+
       {{ house.description }}
     </section>
 
