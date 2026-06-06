@@ -3,142 +3,178 @@
 
 <main class="house-detail">
 
-  <section class="house-gallery">
-    <h2>Foto's</h2>
+  <section class="funda-gallery" aria-label="Foto's van de woning">
+    <div class="gallery-large">
+      <picture>
+        <source srcset="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?format=avif&amp;width=1200" type="image/avif">
+        <source srcset="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?format=webp&amp;width=1200" type="image/webp">
+        <img src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=1200" alt="{{ house.street }} {{ house.house_nr }}">
+      </picture>
+    </div>
 
-    <picture>
-      <source
-        srcset="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?format=avif&width=900"
-        type="image/avif"
-      >
-      <source
-        srcset="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?format=webp&width=900"
-        type="image/webp"
-      >
-      <img
-        class="gallery-main"
-        src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=900"
-        alt="{{ house.street }} {{ house.house_nr }}"
-      >
-    </picture>
-
-    <div class="gallery-side">
+    <div class="gallery-small">
       {% for image in house.gallery limit:4 %}
         <picture>
-          <source
-            srcset="https://fdnd-agency.directus.app/assets/{{ image.directus_files_id }}?format=avif&width=450"
-            type="image/avif"
-          >
-          <source
-            srcset="https://fdnd-agency.directus.app/assets/{{ image.directus_files_id }}?format=webp&width=450"
-            type="image/webp"
-          >
-          <img
-            src="https://fdnd-agency.directus.app/assets/{{ image.directus_files_id }}?width=450"
-            alt="Foto van {{ house.street }} {{ house.house_nr }}"
-          >
+          <source srcset="https://fdnd-agency.directus.app/assets/{{ image.directus_files_id }}?format=avif&amp;width=600" type="image/avif">
+          <source srcset="https://fdnd-agency.directus.app/assets/{{ image.directus_files_id }}?format=webp&amp;width=600" type="image/webp">
+          <img src="https://fdnd-agency.directus.app/assets/{{ image.directus_files_id }}?width=600" alt="Foto van {{ house.street }} {{ house.house_nr }}">
         </picture>
       {% endfor %}
+
+      <a href="#" class="all-photos-button">Bekijk alle foto's</a>
     </div>
   </section>
 
-  <section class="house-media">
-    <h2>Media</h2>
-
-    <a href="#" class="media-card">📷 <span>Alle foto's</span></a>
-    <a href="#" class="media-card">📐 <span>Plattegrond</span></a>
-    <a href="#" class="media-card">🏠 <span>360° foto's</span></a>
-    <a href="#" class="media-card">🎥 <span>Video</span></a>
+  <section class="media-bar" aria-label="Media opties">
+    <a href="#">📷 Foto's</a>
+    <a href="#">📐 Plattegrond</a>
+    <a href="#">🏠 360° foto's</a>
+    <a href="#">🎥 Video</a>
   </section>
 
-  <section class="house-content">
+  <div class="detail-wrapper">
 
-    <header class="house-header">
+    <article class="detail-main">
+
       <p class="breadcrumb">{{ house.city }} / {{ house.street }}</p>
 
-      <h1>
-        {{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}
-      </h1>
+      <header class="detail-header">
+        <h1>{{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}</h1>
+        <p>{{ house.postal_code }} {{ house.city }}</p>
+        <strong>€ {{ house.price }} k.k.</strong>
+      </header>
 
-      <p class="address">{{ house.postal_code }} {{ house.city }}</p>
-
-      <p class="price">€ {{ house.price }} k.k.</p>
-    </header>
-
-    <section class="house-features">
-      <h2>Belangrijkste kenmerken</h2>
-
-      <div class="feature">
-        <strong>{{ house.m2 }} m²</strong>
-        <span>Wonen</span>
-      </div>
-
-      <div class="feature">
-        <strong>{{ house.m2_garden }} m²</strong>
-        <span>Perceel</span>
-      </div>
-
-      <div class="feature">
-        <strong>{{ house.rooms }}</strong>
-        <span>Kamers</span>
-      </div>
-
-      <div class="feature">
-        <strong>A</strong>
-        <span>Energielabel</span>
-      </div>
-    </section>
-
-    <section class="house-description">
-      <h2>Omschrijving</h2>
-      {{ house.description }}
-    </section>
-
-    <section class="house-extra-info">
-      <h2>Kenmerken</h2>
-
-      <div class="info-grid">
+      <section class="quick-info" aria-label="Belangrijkste kenmerken">
+        <div>
+          <span>🏠</span>
+          <p><strong>{{ house.m2 }} m²</strong> wonen</p>
+        </div>
 
         <div>
+          <span>🌳</span>
+          <p><strong>{{ house.m2_garden }} m²</strong> perceel</p>
+        </div>
+
+        <div>
+          <span>🚪</span>
+          <p><strong>{{ house.rooms }}</strong> kamers</p>
+        </div>
+
+        <div>
+          <span>⚡</span>
+          <p><strong>A</strong> energielabel</p>
+        </div>
+      </section>
+
+      <section class="description-section">
+        <h2>Omschrijving</h2>
+        <div class="description-text">
+          {{ house.description }}
+        </div>
+      </section>
+
+      <section class="features-section">
+        <h2>Kenmerken</h2>
+
+        <div class="feature-table">
           <h3>Overdracht</h3>
-          <p><strong>Vraagprijs:</strong> € {{ house.price }} k.k.</p>
-          <p><strong>Status:</strong> Beschikbaar</p>
+          <dl>
+            <div>
+              <dt>Vraagprijs</dt>
+              <dd>€ {{ house.price }} k.k.</dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd>Beschikbaar</dd>
+            </div>
+          </dl>
         </div>
 
-        <div>
+        <div class="feature-table">
           <h3>Adres</h3>
-          <p><strong>Straat:</strong> {{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}</p>
-          <p><strong>Postcode:</strong> {{ house.postal_code }}</p>
-          <p><strong>Plaats:</strong> {{ house.city }}</p>
+          <dl>
+            <div>
+              <dt>Straat</dt>
+              <dd>{{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}</dd>
+            </div>
+            <div>
+              <dt>Postcode</dt>
+              <dd>{{ house.postal_code }}</dd>
+            </div>
+            <div>
+              <dt>Plaats</dt>
+              <dd>{{ house.city }}</dd>
+            </div>
+          </dl>
         </div>
 
-        <div>
+        <div class="feature-table">
           <h3>Bouw</h3>
-          <p><strong>Soort woning:</strong> Woonhuis</p>
-          <p><strong>Bouwjaar:</strong> 2020</p>
+          <dl>
+            <div>
+              <dt>Soort woning</dt>
+              <dd>Woonhuis</dd>
+            </div>
+            <div>
+              <dt>Bouwjaar</dt>
+              <dd>2020</dd>
+            </div>
+          </dl>
         </div>
 
-        <div>
+        <div class="feature-table">
           <h3>Oppervlakten</h3>
-          <p><strong>Wonen:</strong> {{ house.m2 }} m²</p>
-          <p><strong>Perceel:</strong> {{ house.m2_garden }} m²</p>
+          <dl>
+            <div>
+              <dt>Wonen</dt>
+              <dd>{{ house.m2 }} m²</dd>
+            </div>
+            <div>
+              <dt>Perceel</dt>
+              <dd>{{ house.m2_garden }} m²</dd>
+            </div>
+          </dl>
         </div>
 
-        <div>
+        <div class="feature-table">
           <h3>Indeling</h3>
-          <p><strong>Kamers:</strong> {{ house.rooms }}</p>
-          <p><strong>Slaapkamers:</strong> {{ house.rooms }}</p>
+          <dl>
+            <div>
+              <dt>Kamers</dt>
+              <dd>{{ house.rooms }}</dd>
+            </div>
+            <div>
+              <dt>Slaapkamers</dt>
+              <dd>{{ house.rooms }}</dd>
+            </div>
+          </dl>
         </div>
 
-        <div>
+        <div class="feature-table">
           <h3>Energie</h3>
-          <p><strong>Energielabel:</strong> A</p>
+          <dl>
+            <div>
+              <dt>Energielabel</dt>
+              <dd>A</dd>
+            </div>
+          </dl>
         </div>
+      </section>
 
-      </div>
-    </section>
+    </article>
 
-  </section>
+    <aside class="agent-card">
+      <div class="agent-logo">funda</div>
+
+      <h2>Interesse in deze woning?</h2>
+      <p>Neem contact op met de makelaar of plan direct een bezichtiging.</p>
+
+      <a href="#" class="primary-button">Plan een bezichtiging</a>
+      <a href="#" class="secondary-button">Stuur bericht</a>
+      <a href="#" class="phone-button">Bel de makelaar</a>
+    </aside>
+
+  </div>
 
 </main>
 
