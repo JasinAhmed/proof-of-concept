@@ -1,0 +1,58 @@
+{% render 'partials/head.liquid' %}
+{% render 'partials/header.liquid' %}
+
+<main class="houses-page">
+
+    <h1>Huizen te koop</h1>
+
+    <div class="houses-grid">
+
+        {% for house in houses %}
+
+        <a href="/huis-detail/{{ house.id }}" class="house-card">
+
+            <img
+                src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=600"
+                alt="{{ house.street }} {{ house.house_nr }}"
+            >
+
+            <div class="house-card-content">
+
+                <h2>
+                    {{ house.street }}
+                    {{ house.house_nr }}
+                    {{ house.nr_addition }}
+                </h2>
+
+                <p>
+                    {{ house.postal_code }}
+                    {{ house.city }}
+                </p>
+
+                <strong>
+                    € {{ house.price }} k.k.
+                </strong>
+
+                <div class="house-features">
+
+                    <span>
+                        🏠 {{ house.m2 }} m²
+                    </span>
+
+                    <span>
+                        🚪 {{ house.rooms }} kamers
+                    </span>
+
+                </div>
+
+            </div>
+
+        </a>
+
+        {% endfor %}
+
+    </div>
+
+</main>
+
+{% render 'partials/footer.liquid' %}
