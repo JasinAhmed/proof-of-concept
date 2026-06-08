@@ -66,11 +66,43 @@
         </div>
       </section>
 
+      <section class="funda-action-row">
+        <a href="#" class="monthly-button">Bereken je maandlasten</a>
+        <a href="#" class="map-button">Bekijk op kaart</a>
+      </section>
+
       <section class="description-section">
         <h2>Omschrijving</h2>
         <div class="description-text">
           {{ house.description }}
         </div>
+      </section>
+
+      <section class="popularity-card">
+        <h2>Populariteit</h2>
+
+        <div class="popularity-grid">
+          <div>
+            <strong>2.481x</strong>
+            <span>Bekeken</span>
+          </div>
+
+          <div>
+            <strong>47x</strong>
+            <span>Bewaard</span>
+          </div>
+
+          <div>
+            <strong>{{ house.listed_date }}</strong>
+            <span>Aangeboden sinds</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="save-house-card">
+        <h2>Wil je dit huis niet vergeten?</h2>
+        <p>Bewaar deze woning als favoriet zodat je hem later makkelijk terug kunt vinden.</p>
+        <a href="#" class="save-button">♡ Bewaren</a>
       </section>
 
       <section class="features-section">
@@ -86,6 +118,10 @@
             <div>
               <dt>Status</dt>
               <dd>Beschikbaar</dd>
+            </div>
+            <div>
+              <dt>Aangeboden sinds</dt>
+              <dd>{{ house.listed_date }}</dd>
             </div>
           </dl>
         </div>
@@ -119,11 +155,15 @@
               <dt>Bouwjaar</dt>
               <dd>2020</dd>
             </div>
+            <div>
+              <dt>Soort bouw</dt>
+              <dd>Bestaande bouw</dd>
+            </div>
           </dl>
         </div>
 
         <div class="feature-table">
-          <h3>Oppervlakten</h3>
+          <h3>Oppervlakten en inhoud</h3>
           <dl>
             <div>
               <dt>Wonen</dt>
@@ -133,6 +173,10 @@
               <dt>Perceel</dt>
               <dd>{{ house.m2_garden }} m²</dd>
             </div>
+            <div>
+              <dt>Inhoud</dt>
+              <dd>320 m³</dd>
+            </div>
           </dl>
         </div>
 
@@ -140,12 +184,16 @@
           <h3>Indeling</h3>
           <dl>
             <div>
-              <dt>Kamers</dt>
+              <dt>Aantal kamers</dt>
               <dd>{{ house.rooms }}</dd>
             </div>
             <div>
-              <dt>Slaapkamers</dt>
-              <dd>{{ house.rooms }}</dd>
+              <dt>Aantal slaapkamers</dt>
+              <dd>2</dd>
+            </div>
+            <div>
+              <dt>Aantal badkamers</dt>
+              <dd>1</dd>
             </div>
           </dl>
         </div>
@@ -157,6 +205,28 @@
               <dt>Energielabel</dt>
               <dd>A</dd>
             </div>
+            <div>
+              <dt>Isolatie</dt>
+              <dd>Volledig geïsoleerd</dd>
+            </div>
+            <div>
+              <dt>Verwarming</dt>
+              <dd>Centrale verwarming</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="feature-table">
+          <h3>Buitenruimte</h3>
+          <dl>
+            <div>
+              <dt>Tuin</dt>
+              <dd>{{ house.m2_garden }} m²</dd>
+            </div>
+            <div>
+              <dt>Ligging</dt>
+              <dd>Aan rustige straat</dd>
+            </div>
           </dl>
         </div>
       </section>
@@ -167,11 +237,12 @@
       <div class="agent-logo">funda</div>
 
       <h2>Interesse in deze woning?</h2>
-      <p>Neem contact op met de makelaar of plan direct een bezichtiging.</p>
+      <p>Aangeboden door {{ house.agent }}. Neem contact op met de makelaar of plan direct een bezichtiging.</p>
 
       <a href="#" class="primary-button">Plan een bezichtiging</a>
       <a href="#" class="secondary-button">Stuur bericht</a>
       <a href="#" class="phone-button">Bel de makelaar</a>
+      <a href="#" class="brochure-button">Download brochure</a>
     </aside>
 
   </div>
