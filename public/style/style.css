@@ -103,22 +103,99 @@ a {
   font-size: 11px;
 }
 
-/* FUNDA DETAIL */
+/* OVERZICHTSPAGINA */
+
+.houses-page {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+.houses-page h1 {
+  margin: 0 0 1.5rem;
+  font-size: 2rem;
+}
+
+.houses-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.house-card {
+  display: block;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.house-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.house-card:hover img {
+  transform: scale(1.04);
+  filter: brightness(0.9);
+}
+
+.house-card-content {
+  padding: 1rem;
+}
+
+.house-card-content h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.house-card-content p {
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.house-card-content strong {
+  display: block;
+  margin: 1rem 0;
+  font-size: 1.4rem;
+  color: #0071b3;
+}
+
+.house-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #555;
+}
+
+/* DETAILPAGINA */
 
 .house-detail {
   background: #fff;
 }
 
-/* GALLERY */
+/* GALERIJ */
 
 .funda-gallery {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 12px;
+  padding: 8px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 8px;
+}
+
+.gallery-large,
+.gallery-small picture {
+  overflow: hidden;
+  border-radius: 6px;
+  position: relative;
 }
 
 .gallery-large img,
@@ -126,31 +203,35 @@ a {
   width: 100%;
   object-fit: cover;
   border-radius: 6px;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.gallery-large:hover img,
+.gallery-small picture:hover img {
+  transform: scale(1.04);
+  filter: brightness(0.85);
 }
 
 .gallery-large img {
-  height: 280px;
+  height: 260px;
 }
 
 .gallery-small {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 8px;
   position: relative;
 }
 
-.gallery-small picture {
-  min-width: 0;
-}
-
 .gallery-small img {
-  height: 130px;
+  height: 190px;
 }
 
 .all-photos-button {
   position: absolute;
   right: 12px;
   bottom: 12px;
+  z-index: 2;
   background: #fff;
   color: #0071b3;
   padding: 11px 16px;
@@ -160,19 +241,23 @@ a {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
 }
 
+.all-photos-button:hover {
+  background: #eef7fb;
+}
+
 /* MEDIA BAR */
 
 .media-bar {
-  width: calc(100% - 24px);
+  width: calc(100% - 16px);
   max-width: 1180px;
-  margin: 16px auto 0;
+  margin: 14px auto 0;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
 .media-bar a {
-  min-height: 58px;
+  min-height: 54px;
   border: 1px solid #d7dee2;
   border-radius: 8px;
   text-decoration: none;
@@ -182,22 +267,22 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
 }
 
 .media-bar a:hover {
   border-color: #0071b3;
+  background: #eef7fb;
 }
 
-/* MAIN LAYOUT */
+/* DETAIL LAYOUT */
 
 .detail-wrapper {
-  width: calc(100% - 24px);
+  width: calc(100% - 16px);
   max-width: 1180px;
-  margin: 32px auto 0;
+  margin: 24px auto 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 32px;
+  gap: 24px;
 }
 
 .detail-main {
@@ -205,44 +290,44 @@ a {
 }
 
 .breadcrumb {
-  margin: 0 0 16px;
+  margin: 0 0 14px;
   color: #0071b3;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .detail-header {
-  padding-bottom: 28px;
+  padding-bottom: 24px;
   border-bottom: 1px solid #d7dee2;
 }
 
 .detail-header h1 {
   margin: 0;
-  font-size: 34px;
-  line-height: 1.1;
+  font-size: 2rem;
+  line-height: 1.15;
   color: #111827;
 }
 
 .detail-header p {
   margin: 10px 0 0;
   color: #4b5563;
-  font-size: 18px;
+  font-size: 1rem;
 }
 
 .detail-header strong {
   display: block;
-  margin-top: 20px;
+  margin-top: 18px;
   color: #111827;
-  font-size: 30px;
+  font-size: 1.7rem;
 }
 
 /* QUICK INFO */
 
 .quick-info {
-  padding: 28px 0;
+  padding: 24px 0;
   border-bottom: 1px solid #d7dee2;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
+  gap: 14px;
 }
 
 .quick-info div {
@@ -259,58 +344,139 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
 }
 
 .quick-info p {
   margin: 0;
   color: #4b5563;
-  font-size: 17px;
+  font-size: 1rem;
 }
 
 .quick-info strong {
   color: #111827;
 }
 
-/* DESCRIPTION */
+/* ACTIEBLOKKEN */
 
-.description-section {
-  padding: 36px 0;
+.funda-action-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 24px 0;
+  border-bottom: 1px solid #d7dee2;
+}
+
+.monthly-button,
+.map-button,
+.brochure-button {
+  min-height: 48px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.monthly-button {
+  background: #eef7fb;
+  color: #0071b3;
+}
+
+.map-button {
+  background: #fff;
+  color: #0071b3;
+  border: 1px solid #0071b3;
+}
+
+.brochure-button {
+  background: #fff7ed;
+  color: #f98e00;
+  border: 1px solid #f98e00;
+  margin-top: 12px;
+}
+
+/* SECTIES */
+
+.description-section,
+.popularity-card,
+.save-house-card {
+  padding: 28px 0;
   border-bottom: 1px solid #d7dee2;
 }
 
 .description-section h2,
-.features-section h2 {
-  margin: 0 0 20px;
-  font-size: 28px;
+.features-section h2,
+.popularity-card h2,
+.save-house-card h2 {
+  margin: 0 0 18px;
+  font-size: 1.7rem;
   color: #111827;
 }
 
 .description-text {
   color: #374151;
-  line-height: 1.8;
-  font-size: 17px;
+  line-height: 1.75;
+  font-size: 1rem;
 }
 
 .description-text p {
   margin-top: 0;
 }
 
-/* FEATURE TABLES */
+/* POPULARITEIT */
+
+.popularity-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.popularity-grid div {
+  background: #f7f9fa;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.popularity-grid strong {
+  display: block;
+  font-size: 1.5rem;
+  color: #111827;
+}
+
+.popularity-grid span,
+.save-house-card p {
+  color: #6b7280;
+}
+
+.save-button {
+  display: inline-flex;
+  min-height: 46px;
+  padding: 0 22px;
+  background: #f98e00;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+/* KENMERKEN */
 
 .features-section {
-  padding: 36px 0 56px;
+  padding: 32px 0 48px;
 }
 
 .feature-table {
   border-top: 1px solid #d7dee2;
-  padding: 24px 0;
+  padding: 22px 0;
 }
 
 .feature-table h3 {
-  margin: 0 0 16px;
+  margin: 0 0 14px;
   color: #111827;
-  font-size: 22px;
+  font-size: 1.35rem;
 }
 
 .feature-table dl {
@@ -319,8 +485,8 @@ a {
 
 .feature-table dl div {
   display: grid;
-  grid-template-columns: 150px 1fr;
-  gap: 20px;
+  grid-template-columns: 1fr;
+  gap: 4px;
   padding: 10px 0;
 }
 
@@ -334,13 +500,13 @@ a {
   font-weight: 600;
 }
 
-/* AGENT CARD */
+/* MAKELAAR KAART */
 
 .agent-card {
   background: #fff;
   border: 1px solid #d7dee2;
   border-radius: 12px;
-  padding: 24px;
+  padding: 20px;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
   height: fit-content;
 }
@@ -355,17 +521,17 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
 .agent-card h2 {
   margin: 0;
-  font-size: 24px;
+  font-size: 1.45rem;
   color: #111827;
 }
 
 .agent-card p {
-  margin: 12px 0 22px;
+  margin: 12px 0 20px;
   color: #4b5563;
   line-height: 1.6;
 }
@@ -467,12 +633,37 @@ a {
     height: 36px;
   }
 
+  .houses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .house-features {
+    flex-direction: row;
+  }
+
+  .gallery-small {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .media-bar {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .quick-info {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .funda-action-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .popularity-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .feature-table dl div {
+    grid-template-columns: 150px 1fr;
+    gap: 20px;
   }
 
   .footer-links {
@@ -525,15 +716,19 @@ a {
   }
 
   .gallery-small {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .gallery-small img {
     height: 256px;
   }
 
+  .media-bar {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
   .detail-header h1 {
-    font-size: 44px;
+    font-size: 2.75rem;
   }
 
   .quick-info {
@@ -563,83 +758,11 @@ a {
     top: 100px;
   }
 
+  .houses-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .footer-links {
     grid-template-columns: repeat(4, 1fr);
   }
-}
-.houses-page {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-}
-
-.houses-page h1 {
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
-}
-
-.houses-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-}
-
-.house-card {
-    display: block;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease;
-}
-
-.house-card:hover {
-    transform: translateY(-5px);
-}
-
-.house-card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
-
-.house-card-content {
-    padding: 1rem;
-}
-
-.house-card-content h2 {
-    margin: 0;
-    font-size: 1.3rem;
-}
-
-.house-card-content p {
-    color: #666;
-    margin: 0.5rem 0;
-}
-
-.house-card-content strong {
-    display: block;
-    margin: 1rem 0;
-    font-size: 1.5rem;
-    color: #0071b3;
-}
-
-.house-features {
-    display: flex;
-    gap: 1rem;
-    color: #555;
-}
-
-@media (min-width: 768px) {
-    .houses-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1200px) {
-    .houses-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
 }
