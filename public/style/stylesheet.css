@@ -1,0 +1,49 @@
+/* styleguide.css */
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("/assets/fonts/_ProximaNova-Regular.otf") format("opentype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("/assets/fonts/_ProximaNova-Semibold.otf") format("opentype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("/assets/fonts/_ProximaNova-Bold.otf") format("opentype");
+  font-weight: 700;
+}
+
+:root {
+  /* Kleuren */
+  --color-primary: #f98e00;
+  --color-secondary: #0071b3;
+
+  --color-white: #ffffff;
+  --color-off-white: #fef7f1;
+
+  --color-text: #333333;
+  --color-text-light: #6b7280;
+
+  --color-border: #d7dee2;
+
+  /* Typografie */
+  --font-family: "Proxima Nova", Arial, sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Border radius */
+  --radius-small: 6px;
+  --radius-medium: 8px;
+  --radius-large: 12px;
+
+  /* Shadows */
+  --shadow-small: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
