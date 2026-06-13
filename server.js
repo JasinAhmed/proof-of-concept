@@ -52,6 +52,27 @@ app.get('/favorieten', function (request, response) {
     });
 });
 
+app.post('/favorieten/:id', async function (request, response) {
+    const id = request.params.id;
+
+    const apiResponse = await fetch(
+        `https://fdnd-agency.directus.app/items/f_houses/${id}?fields=*.*`
+    );
+
+    const apiResponseJSON = await apiResponse.json();
+
+    const house = apiResponseJSON.data;
+
+    const bestaatAl = favorieten.find(function (favoriet) {
+        return favoriet.id == house.id;
+    });
+
+    if (!bestaatAl) {
+        favorieten.push(house);
+    }
+
+    response.redirect('/favorieten');
+});
 app.set('port', process.env.PORT || 8000);
 
 app.listen(app.get('port'), function () {
