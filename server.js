@@ -11,6 +11,7 @@ const engine = new Liquid();
 app.engine('liquid', engine.express());
 app.set('views', './views');
 app.set('view engine', 'liquid');
+let favorieten = [];
 
 /* OVERZICHTSPAGINA */
 
@@ -41,6 +42,13 @@ app.get('/huis-detail/:id', async function (request, response) {
     response.render('huis-detail.liquid', {
         title: 'Huis detail',
         house: apiResponseJSON.data
+    });
+});
+
+app.get('/favorieten', function (request, response) {
+    response.render('favorieten.liquid', {
+        title: 'Favoriete huizen',
+        houses: favorieten
     });
 });
 
