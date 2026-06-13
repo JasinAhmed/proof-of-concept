@@ -1,0 +1,85 @@
+{% render 'partials/head.liquid' %}
+{% render 'partials/header.liquid' %}
+
+<section class="favorites-page">
+    <div class="favorites-container">
+
+        <nav class="breadcrumb">
+            🏠 / Mijn account / Favorieten
+        </nav>
+
+        <h1>{{ title }}</h1>
+        <div class="title-line"></div>
+
+        {% if houses.size == 0 %}
+
+            <div class="empty-state">
+                <div class="empty-icon">🏠❤️</div>
+
+                <h2>Tip: bewaar een huis</h2>
+
+                <p>
+                    Tik op het hart-icoon bij je favoriete huis om deze toe te voegen aan je favorieten.
+                </p>
+
+                <a href="/" class="search-button">
+                    Start met zoeken
+                </a>
+            </div>
+
+        {% else %}
+
+            <div class="houses-grid">
+
+                {% for house in houses %}
+
+                    <a href="/huis-detail/{{ house.id }}" class="house-card">
+
+                        <img
+                            src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=600"
+                            alt="{{ house.street }} {{ house.house_nr }}"
+                        >
+
+                        <div class="house-card-content">
+
+                            <h2>
+                                {{ house.street }}
+                                {{ house.house_nr }}
+                                {{ house.nr_addition }}
+                            </h2>
+
+                            <p>
+                                {{ house.postal_code }}
+                                {{ house.city }}
+                            </p>
+
+                            <strong>
+                                € {{ house.price }}
+                            </strong>
+
+                            <div class="house-features">
+
+                                <span>
+                                    🛏️ {{ house.rooms }} kamers
+                                </span>
+
+                                <span>
+                                    📐 {{ house.m2 }} m²
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    </div>
+</section>
+
+{% render 'partials/footer.liquid' %}
