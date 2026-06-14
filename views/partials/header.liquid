@@ -1,47 +1,53 @@
-<header class="header">
-  <div class="header-container">
+<header class="main-header">
+  <nav class="main-nav">
+    <ul class="main-nav-list">
 
-    <button class="menu-button" popovertarget="mobile-menu">
-      <span class="menu-icon">☰</span>
-      <span class="menu-text">Menu</span>
-    </button>
+      <li class="menu-list-item">
+        <button class="menu-button" popovertarget="mobile-menu">
+          <span class="menu-icon">☰</span>
+          <span>Menu</span>
+        </button>
+      </li>
 
-    <a href="/" class="logo">
-      <img src="/style/assets/Logo.svg" alt="Funda logo">
-    </a>
+      <li class="logo-item">
+        <a href="/">
+          <img class="funda-logo" src="/style/assets/Logo.svg" alt="Funda logo">
+        </a>
+      </li>
 
-    <nav id="mobile-menu" class="mobile-menu" popover>
-      <a href="/">Kopen</a>
-      <a href="/">Huren</a>
-      <a href="/">Verkopen</a>
-      <a href="/">Nieuwbouw</a>
-    </nav>
+      <li class="secondary-nav-item"><a href="/">Kopen</a></li>
+      <li class="secondary-nav-item"><a href="/">Huren</a></li>
+      <li class="secondary-nav-item"><a href="/">Verkopen</a></li>
+      <li class="secondary-nav-item"><a href="/">Nieuwbouw</a></li>
 
-    <nav class="main-nav">
-      <a href="/">Kopen</a>
-      <a href="/">Huren</a>
-      <a href="/">Verkopen</a>
-      <a href="/">Nieuwbouw</a>
-    </nav>
+      <li>
+        <a href="/">
+          <span class="nav-icon">⌂</span>
+          <span>Mijn Huis</span>
+        </a>
+      </li>
 
-    <div class="header-actions">
+      <li>
+        <a href="/favorieten">
+          <span class="nav-icon">♡</span>
+          <span>Favorieten</span>
+        </a>
+      </li>
 
-      <a href="/">
-        <span class="action-icon">⌂</span>
-        <span class="action-text">Mijn Huis</span>
-      </a>
+      <li>
+        <a href="/">
+          <span class="nav-icon">◎</span>
+          <span>Inloggen</span>
+        </a>
+      </li>
 
-      <a href="/favorieten">
-        <span class="action-icon">♡</span>
-        <span class="action-text">Favorieten</span>
-      </a>
+    </ul>
+  </nav>
 
-      <a href="/">
-        <span class="action-icon">◎</span>
-        <span class="action-text">Account</span>
-      </a>
-
-    </div>
-
-  </div>
+  <nav id="mobile-menu" class="mobile-menu" popover>
+    <a href="/">Kopen</a>
+    <a href="/">Huren</a>
+    <a href="/">Verkopen</a>
+    <a href="/">Nieuwbouw</a>
+  </nav>
 </header>
