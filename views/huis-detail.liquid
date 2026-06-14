@@ -3,183 +3,330 @@
 
 <main class="house-detail">
 
-  <section class="funda-gallery">
-    <div class="gallery-large">
-      <img src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=1200" alt="{{ house.street }} {{ house.house_nr }}">
+  <nav class="detail-breadcrumb">
+    <a href="/">⌂</a>
+    <span>/</span>
+    <a href="#">{{ house.city }}</a>
+    <span>/</span>
+    <a href="#">{{ house.city }} Plassengebied</a>
+    <span>/</span>
+    <span>{{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}</span>
+  </nav>
 
-      <form action="/favorieten/{{ house.id }}" method="POST" class="gallery-save-form">
-        <button type="submit" class="gallery-save">
-          ♡ Bewaren
-        </button>
+  <section class="funda-gallery">
+
+    <div class="gallery-main">
+      <img
+        src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=1400"
+        alt="{{ house.street }}"
+      >
+    </div>
+
+    <div class="gallery-side">
+      {% for image in house.gallery limit:4 %}
+        <div class="gallery-tile">
+          <img
+            src="https://fdnd-agency.directus.app/assets/{{ image.directus_files_id }}?width=900"
+            alt="Foto van {{ house.street }}"
+          >
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="gallery-actions">
+      <a href="#" class="gallery-btn">Delen</a>
+
+      <form action="/favorieten/{{ house.id }}" method="POST">
+        <button type="submit" class="gallery-btn">♡ Bewaar</button>
       </form>
     </div>
 
-    <div class="gallery-small">
-      {% for image in house.gallery limit:4 %}
-        <picture>
-          <img src="https://fdnd-agency.directus.app/assets/{{ image.directus_files_id }}?width=600" alt="Foto van {{ house.street }}">
-        </picture>
-      {% endfor %}
-      <a href="#" class="all-photos-button">Bekijk alle foto's</a>
-    </div>
   </section>
 
-  <section class="media-bar">
-    <a href="#">📷 Foto's <span>77</span></a>
-    <a href="#">📐 Plattegrond <span>7</span></a>
-    <a href="#">🎥 Video</a>
+  <nav class="media-bar">
+    <a href="#">▣ Foto's <span>77</span></a>
+    <a href="#">▱ Plattegrond <span>7</span></a>
+    <a href="#">▷ Video</a>
     <a href="#">▦ Alle media</a>
-  </section>
+  </nav>
 
   <div class="detail-wrapper">
+
     <article class="detail-main">
 
-      <p class="breadcrumb">{{ house.city }} / {{ house.street }}</p>
-
       <header class="detail-header">
-        <h1>{{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}<br>{{ house.postal_code }} {{ house.city }}</h1>
-        <p>{{ house.city }} Plassengebied</p>
+        <h1>{{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}</h1>
+
+        <p>{{ house.postal_code }} {{ house.city }}</p>
+
+        <a href="#" class="area-link">
+          {{ house.city }} Plassengebied
+        </a>
+
         <strong>€ {{ house.price }} k.k.</strong>
       </header>
 
-      <section class="funda-action-row">
-        <a href="#" class="monthly-button">Wat worden mijn maandlasten?</a>
-        <a href="#" class="map-button">Kaart</a>
+      <section class="quick-info">
+        <div>
+          <span>⌂</span>
+          <p><strong>{{ house.m2 }} m²</strong> wonen</p>
+        </div>
+
+        <div>
+          <span>▧</span>
+          <p><strong>{{ house.m2_garden }} m²</strong> perceel</p>
+        </div>
+
+        <div>
+          <span>▤</span>
+          <p><strong>{{ house.rooms }}</strong> kamers</p>
+        </div>
       </section>
 
-      <section class="quick-info">
-        <div><span>🏠</span><p><strong>{{ house.m2 }} m²</strong> wonen</p></div>
-        <div><span>🌳</span><p><strong>{{ house.m2_garden }} m²</strong> perceel</p></div>
-        <div><span>🛏️</span><p><strong>{{ house.rooms }}</strong> kamers</p></div>
+      <section class="funda-action-row">
+        <a href="#" class="monthly-button">Wat worden mijn maandlasten?</a>
+        <a href="#" class="map-button">Bekijk op kaart</a>
       </section>
 
       <section class="description-section">
         <h2>Omschrijving</h2>
+
         <div class="description-text">
           {{ house.description }}
         </div>
-        <a href="#" class="read-more-button">Lees de volledige omschrijving</a>
+
+        <a href="#" class="read-more">
+          Lees de volledige omschrijving
+        </a>
       </section>
 
       <section class="features-section">
         <h2>Kenmerken</h2>
 
-        <div class="feature-table">
-          <h3>Overdracht</h3>
-          <dl>
-            <div><dt>Aangeboden sinds</dt><dd>{{ house.listed_date }}</dd></div>
-            <div><dt>Aanvaarding</dt><dd>In overleg</dd></div>
-            <div><dt>Vraagprijs</dt><dd>€ {{ house.price }} kosten koper</dd></div>
-            <div><dt>Vraagprijs per m²</dt><dd>€ 13.591</dd></div>
-            <div><dt>Status</dt><dd>Beschikbaar</dd></div>
-          </dl>
-        </div>
+        <div class="features-card">
 
-        <div class="feature-table">
-          <h3>Bouw</h3>
-          <dl>
-            <div><dt>Soort woonhuis</dt><dd>Villa, vrijstaande woning</dd></div>
-            <div><dt>Soort bouw</dt><dd>Bestaande bouw</dd></div>
-            <div><dt>Bouwjaar</dt><dd>2017</dd></div>
-            <div><dt>Specifiek</dt><dd>Dubbele bewoning mogelijk</dd></div>
-            <div><dt>Soort dak</dt><dd>Mansarde dak</dd></div>
-          </dl>
-        </div>
+          <div class="feature-group">
+            <div class="feature-group__title">
+              <span>🤝</span>
+              <h3>Overdracht</h3>
+            </div>
 
-        <div class="feature-table">
-          <h3>Oppervlakten en inhoud</h3>
-          <dl>
-            <div><dt>Wonen</dt><dd>{{ house.m2 }} m²</dd></div>
-            <div><dt>Perceel</dt><dd>{{ house.m2_garden }} m²</dd></div>
-            <div><dt>Gebouwgebonden buitenruimte</dt><dd>150 m²</dd></div>
-            <div><dt>Externe bergruimte</dt><dd>17 m²</dd></div>
-            <div><dt>Inhoud</dt><dd>4.300 m³</dd></div>
-          </dl>
-        </div>
+            <dl>
+              <div>
+                <dt>Aangeboden sinds</dt>
+                <dd><a href="#">Log in om te bekijken</a></dd>
+              </div>
 
-        <div class="feature-table">
-          <h3>Indeling</h3>
-          <dl>
-            <div><dt>Aantal kamers</dt><dd>{{ house.rooms }} kamers</dd></div>
-            <div><dt>Aantal slaapkamers</dt><dd>7 slaapkamers</dd></div>
-            <div><dt>Aantal badkamers</dt><dd>8 badkamers en 4 aparte toiletten</dd></div>
-            <div><dt>Aantal woonlagen</dt><dd>4 woonlagen en een kelder</dd></div>
-            <div><dt>Voorzieningen</dt><dd>Airconditioning, alarm, domotica, lift en sauna</dd></div>
-          </dl>
-        </div>
+              <div>
+                <dt>Aanvaarding</dt>
+                <dd>In overleg</dd>
+              </div>
 
-        <div class="feature-table">
-          <h3>Energie</h3>
-          <dl>
-            <div><dt>Energielabel</dt><dd>A</dd></div>
-            <div><dt>Isolatie</dt><dd>Volledig geïsoleerd</dd></div>
-            <div><dt>Verwarming</dt><dd>Gehele vloerverwarming</dd></div>
-          </dl>
-        </div>
+              <div>
+                <dt>Vraagprijs</dt>
+                <dd>€ {{ house.price }} kosten koper</dd>
+              </div>
 
-        <div class="feature-table">
-          <h3>Buitenruimte</h3>
-          <dl>
-            <div><dt>Ligging</dt><dd>Aan rustige weg, aan water en vrij uitzicht</dd></div>
-            <div><dt>Tuin</dt><dd>Tuin rondom en zonneterras</dd></div>
-            <div><dt>Balkon/dakterras</dt><dd>Dakterras en balkon aanwezig</dd></div>
-          </dl>
-        </div>
+              <div>
+                <dt>Status</dt>
+                <dd>Beschikbaar</dd>
+              </div>
+            </dl>
+          </div>
 
-        <div class="feature-table">
-          <h3>Garage en parkeren</h3>
-          <dl>
-            <div><dt>Soort garage</dt><dd>Parkeerkelder</dd></div>
-            <div><dt>Parkeergelegenheid</dt><dd>Op afgesloten terrein en eigen terrein</dd></div>
-          </dl>
-        </div>
+          <div class="feature-group">
+            <div class="feature-group__title">
+              <span>🏗️</span>
+              <h3>Bouw</h3>
+            </div>
 
-        <a href="#" class="view-all-features">Bekijk alle kenmerken</a>
+            <dl>
+              <div>
+                <dt>Soort woning</dt>
+                <dd>Villa, vrijstaande woning</dd>
+              </div>
+
+              <div>
+                <dt>Soort bouw</dt>
+                <dd>Bestaande bouw</dd>
+              </div>
+
+              <div>
+                <dt>Bouwjaar</dt>
+                <dd>2017</dd>
+              </div>
+
+              <div>
+                <dt>Soort dak</dt>
+                <dd>Mansarde dak</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="feature-group">
+            <div class="feature-group__title">
+              <span>📐</span>
+              <h3>Oppervlakten en inhoud</h3>
+            </div>
+
+            <dl>
+              <div>
+                <dt>Wonen</dt>
+                <dd>{{ house.m2 }} m²</dd>
+              </div>
+
+              <div>
+                <dt>Perceel</dt>
+                <dd>{{ house.m2_garden }} m²</dd>
+              </div>
+
+              <div>
+                <dt>Gebouwgebonden buitenruimte</dt>
+                <dd>150 m²</dd>
+              </div>
+
+              <div>
+                <dt>Externe bergruimte</dt>
+                <dd>17 m²</dd>
+              </div>
+
+              <div>
+                <dt>Inhoud</dt>
+                <dd>4.300 m³</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="feature-group">
+            <div class="feature-group__title">
+              <span>🏠</span>
+              <h3>Indeling</h3>
+            </div>
+
+            <dl>
+              <div>
+                <dt>Aantal kamers</dt>
+                <dd>{{ house.rooms }} kamers</dd>
+              </div>
+
+              <div>
+                <dt>Aantal slaapkamers</dt>
+                <dd>7 slaapkamers</dd>
+              </div>
+
+              <div>
+                <dt>Aantal badkamers</dt>
+                <dd>8 badkamers</dd>
+              </div>
+
+              <div>
+                <dt>Aantal woonlagen</dt>
+                <dd>3 woonlagen</dd>
+              </div>
+            </dl>
+          </div>
+
+        </div>
       </section>
 
-      <section class="popularity-card">
-        <h2>Populariteit</h2>
-        <div class="popularity-grid">
-          <div><strong>224.503x</strong><span>Bekeken</span></div>
-          <div><strong>1.885x</strong><span>Bewaard</span></div>
-          <div><strong>{{ house.listed_date }}</strong><span>Aangeboden sinds</span></div>
+      <section class="popularity-section">
+        <div class="section-header">
+          <h2>Populariteit</h2>
+          <a href="#">Log in om te bekijken</a>
+        </div>
+
+        <div class="popularity-card">
+          <div class="popularity-item">
+            <span>👁</span>
+            <strong>226.318x</strong>
+            <p>Bekeken</p>
+          </div>
+
+          <div class="popularity-item">
+            <span>♡</span>
+            <strong>1.889x</strong>
+            <p>Bewaard</p>
+          </div>
+
+          <div class="popularity-item">
+            <span>📅</span>
+            <strong>6-8-2025</strong>
+            <p>Op Funda</p>
+          </div>
         </div>
       </section>
 
-      <section class="neighborhood-card">
+      <section class="neighborhood-section">
         <h2>Buurt</h2>
-        <p>Deze woning ligt in de buurt <strong>{{ house.city }} Plassengebied</strong>.</p>
-        <div class="neighborhood-grid">
-          <div><strong>1.860</strong><span>inwoners</span></div>
-          <div><strong>35%</strong><span>gezinnen met kinderen</span></div>
-          <div><strong>€ 8.250</strong><span>gem. vraagprijs/m²</span></div>
-        </div>
-        <a href="#" class="secondary-button small">Bekijk buurtinzichten</a>
-      </section>
 
-      <section class="bottom-links">
-        <a href="#">Delen</a>
-        <a href="#">Pagina afdrukken</a>
-        <a href="#">Meld een fout over dit huis</a>
+        <div class="neighborhood-layout">
+
+          <div class="neighborhood-card">
+
+            <div class="neighborhood-header">
+              <div class="neighborhood-icon">
+                📍
+              </div>
+
+              <div>
+                <h3>{{ house.city }} Plassengebied</h3>
+                <p>{{ house.city }}</p>
+              </div>
+            </div>
+
+            <dl>
+              <div>
+                <dt>Inwoners</dt>
+                <dd>1.880</dd>
+              </div>
+
+              <div>
+                <dt>Gezin met kinderen</dt>
+                <dd>26%</dd>
+              </div>
+
+              <div>
+                <dt>Gem. vraagprijs / m²</dt>
+                <dd>€ 8.078</dd>
+              </div>
+            </dl>
+
+          </div>
+
+          <div class="neighborhood-discover">
+            <h3>Ontdek de buurt</h3>
+
+            <p>
+              Benieuwd naar het woningaanbod, bewoners en lokale makelaars?
+            </p>
+
+            <a href="#">
+              Bekijk buurtinzichten →
+            </a>
+          </div>
+
+        </div>
       </section>
 
     </article>
 
     <aside class="agent-card">
-      <div class="agent-logo">funda</div>
+      <div class="agent-logo">
+        funda
+      </div>
+
       <h2>Interesse in deze woning?</h2>
-      <p>Aangeboden door <strong>{{ house.agent }}</strong>. Neem contact op met de makelaar of plan direct een bezichtiging.</p>
+
+      <p>
+        Aangeboden door <strong>{{ house.agent }}</strong>.
+        Neem contact op met de makelaar of plan direct een bezichtiging.
+      </p>
 
       <a href="#" class="primary-button">Plan een bezichtiging</a>
       <a href="#" class="secondary-button">Stuur bericht</a>
       <a href="#" class="phone-button">Bel de makelaar</a>
-      <a href="#" class="brochure-button">Download brochure</a>
-
-      <div class="agent-extra">
-        <strong>{{ house.agent }}</strong>
-        <span>NVM Makelaar</span>
-      </div>
     </aside>
+
   </div>
 
 </main>
