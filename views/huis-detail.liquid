@@ -3,7 +3,7 @@
 
 <main>
 
-  <nav class="breadcrumb" aria-label="Breadcrumb">
+  <nav class="breadcrumb">
     <a href="/" aria-label="Home">
       <img src="/style/assets/house@2x.svg" alt="">
     </a>
@@ -16,7 +16,7 @@
     <span>{{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}</span>
   </nav>
 
-  <section class="main-image">
+  <div class="main-image">
     <img
       class="primary-image"
       src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=1400"
@@ -44,9 +44,9 @@
         </button>
       </form>
     </div>
-  </section>
+  </div>
 
-  <nav class="media-options">
+  <div class="media-options">
     <ul>
       <li>
         <a href="#">
@@ -78,7 +78,7 @@
         </a>
       </li>
     </ul>
-  </nav>
+  </div>
 
   <section class="main-info">
     <h1>{{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}</h1>
