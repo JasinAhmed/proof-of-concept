@@ -16,18 +16,27 @@ let favorieten = [];
 /* OVERZICHTSPAGINA */
 
 app.get('/', async function (request, response) {
-    const apiResponse = await fetch(
-        'https://fdnd-agency.directus.app/items/f_houses?fields=*.*'
-    );
+    const sort = request.query.sort;
 
+    let url = 'https://fdnd-agency.directus.app/items/f_houses?fields=*.*';
+
+    if (sort === 'laag-hoog') {
+        url += '&sort=price';
+    }
+
+    if (sort === 'hoog-laag') {
+        url += '&sort=-price';
+    }
+
+    const apiResponse = await fetch(url);
     const apiResponseJSON = await apiResponse.json();
 
     response.render('index.liquid', {
         title: 'Huizen',
-        houses: apiResponseJSON.data
+        houses: apiResponseJSON.data,
+        sort: sort
     });
 });
-
 /* DETAILPAGINA */
 
 app.get('/huis-detail/:id', async function (request, response) {
