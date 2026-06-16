@@ -2,57 +2,70 @@
 {% render 'partials/header.liquid' %}
 
 <main class="houses-page">
+    <section class="houses-hero" aria-labelledby="houses-title">
+        <h1 id="houses-title">Huizen te koop</h1>
 
-    <h1>Huizen te koop</h1>
+        <form class="houses-sort-form" method="GET" action="/">
+            <label for="sort">Sorteer op prijs</label>
 
-    <div class="houses-grid">
+            <select name="sort" id="sort" onchange="this.form.submit()">
+                <option value="">Standaard</option>
+                <option value="laag-hoog" {% if sort == 'laag-hoog' %}selected{% endif %}>
+                    Prijs laag naar hoog
+                </option>
+                <option value="hoog-laag" {% if sort == 'hoog-laag' %}selected{% endif %}>
+                    Prijs hoog naar laag
+                </option>
+            </select>
 
-        {% for house in houses %}
+            <button type="submit">Sorteren</button>
+        </form>
+    </section>
 
-        <a href="/huis-detail/{{ house.id }}" class="house-card">
+    <section class="houses-section" aria-labelledby="houses-list-title">
+        <h2 id="houses-list-title" class="visually-hidden">Woningen overzicht</h2>
 
-            <img
-                src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=600"
-                alt="{{ house.street }} {{ house.house_nr }}"
-            >
+        <ul class="houses-grid">
+            {% for house in houses %}
+                <li class="house-item">
+                    <a href="/huis-detail/{{ house.id }}" class="house-card">
+                        <img
+                            class="house-card-image"
+                            src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=600"
+                            alt="Foto van woning aan {{ house.street }} {{ house.house_nr }}"
+                        >
 
-            <div class="house-card-content">
+                        <div class="house-card-content">
+                            <h3>
+                                {{ house.street }}
+                                {{ house.house_nr }}
+                                {{ house.nr_addition }}
+                            </h3>
 
-                <h2>
-                    {{ house.street }}
-                    {{ house.house_nr }}
-                    {{ house.nr_addition }}
-                </h2>
+                            <p>
+                                {{ house.postal_code }}
+                                {{ house.city }}
+                            </p>
 
-                <p>
-                    {{ house.postal_code }}
-                    {{ house.city }}
-                </p>
+                            <strong>€ {{ house.price }} k.k.</strong>
 
-                <strong>
-                    € {{ house.price }} k.k.
-                </strong>
+                            <dl class="house-features">
+                                <div>
+                                    <dt>Oppervlakte</dt>
+                                    <dd>🏠 {{ house.m2 }} m²</dd>
+                                </div>
 
-                <div class="house-features">
-
-                    <span>
-                        🏠 {{ house.m2 }} m²
-                    </span>
-
-                    <span>
-                        🚪 {{ house.rooms }} kamers
-                    </span>
-
-                </div>
-
-            </div>
-
-        </a>
-
-        {% endfor %}
-
-    </div>
-
+                                <div>
+                                    <dt>Kamers</dt>
+                                    <dd>🚪 {{ house.rooms }} kamers</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
 </main>
 
 {% render 'partials/footer.liquid' %}
