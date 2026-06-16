@@ -9,22 +9,11 @@
     </a>
 
     <span>/</span>
-
-    <a href="#">
-      {{ house.city }}
-    </a>
-
+    <a href="#">{{ house.city }}</a>
     <span>/</span>
-
-    <a href="#">
-      {{ house.city }} Plassengebied
-    </a>
-
+    <a href="#">{{ house.city }} Plassengebied</a>
     <span>/</span>
-
-    <span>
-      {{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}
-    </span>
+    <span>{{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}</span>
   </nav>
 
   <section class="main-image">
@@ -48,9 +37,9 @@
         <span>Delen</span>
       </button>
 
-      <form action="/favorieten/{{ house.id }}" method="POST" class="favorite-form">
-        <button type="submit" class="favorite-button">
-          <span class="favorite-heart">♡</span>
+      <form action="/favorieten/{{ house.id }}" method="POST" class="favorite-form" data-house-id="{{ house.id }}">
+        <button type="submit" class="favorite-button" id="favoriteButton">
+          <span class="favorite-heart" aria-hidden="true">♡</span>
           <span class="favorite-text">Bewaren</span>
         </button>
       </form>
@@ -343,8 +332,8 @@
     <div class="success-toast-icon">✓</div>
 
     <div class="success-toast-content">
-      <strong>Je huis is bewaard</strong>
-      <p>Je vindt ’m onder ‘Favorieten’ in je account</p>
+      <strong>Woning opgeslagen</strong>
+      <p>Deze woning is toegevoegd aan je favorieten.</p>
     </div>
 
     <button type="button" class="success-toast-close">×</button>

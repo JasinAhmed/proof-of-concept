@@ -1,21 +1,27 @@
+// Ik pak het formulier van de bewaar-knop
 const favoriteForm = document.querySelector('.favorite-form');
-const favoritesCount = document.querySelector('.favorites-count');
-const favoritesHeaderHeart = document.querySelector('.favorites-heart');
+
+// Ik pak de toast melding
 const successToast = document.querySelector('#successToast');
+
+// Ik pak de sluitknop van de toast
 const successToastClose = document.querySelector('.success-toast-close');
 
+// Hier sla ik de timer op, zodat de toast vanzelf weer weggaat
 let toastTimer;
 
+// Deze functie laat de succesmelding zien
 function showSuccessToast() {
-  clearTimeout(toastTimer);
-
   successToast.classList.add('show');
+
+  clearTimeout(toastTimer);
 
   toastTimer = setTimeout(() => {
     successToast.classList.remove('show');
   }, 3500);
 }
 
+// Als je op het kruisje klikt, verdwijnt de melding
 if (successToastClose) {
   successToastClose.addEventListener('click', () => {
     clearTimeout(toastTimer);
@@ -23,14 +29,33 @@ if (successToastClose) {
   });
 }
 
+// Alleen uitvoeren als het formulier bestaat
 if (favoriteForm) {
   const favoriteButton = favoriteForm.querySelector('.favorite-button');
   const favoriteHeart = favoriteForm.querySelector('.favorite-heart');
   const favoriteText = favoriteForm.querySelector('.favorite-text');
 
-  favoriteForm.addEventListener('submit', async function (event) {
+  // Ik gebruik het huis-id om te onthouden welk huis al bewaard is
+  const houseId = favoriteForm.dataset.houseId;
+  const storageKey = 'favorite-house-' + houseId;
+
+  // Als het huis al eerder is bewaard, zet ik de knop meteen op "Bewaard"
+  if (localStorage.getItem(storageKey) === 'true') {
+    favoriteButton.classList.add('is-favorite');
+    favoriteButton.disabled = true;
+    favoriteHeart.textContent = '♥';
+    favoriteText.textContent = 'Bewaard';
+  }
+
+  favoriteForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
+    // Als het huis al is opgeslagen, mag je niet nog een keer opslaan
+    if (localStorage.getItem(storageKey) === 'true') {
+      return;
+    }
+
+    // Loading state
     favoriteButton.classList.add('loading');
     favoriteButton.disabled = true;
     favoriteText.textContent = 'Bezig...';
@@ -42,9 +67,13 @@ if (favoriteForm) {
       body: new URLSearchParams(formData)
     });
 
+    // Loading state weghalen
     favoriteButton.classList.remove('loading');
 
+    // Als opslaan goed ging
     if (response.ok) {
+      localStorage.setItem(storageKey, 'true');
+
       favoriteButton.classList.add('is-favorite');
       favoriteButton.classList.add('success');
 
@@ -53,23 +82,20 @@ if (favoriteForm) {
 
       showSuccessToast();
 
-      if (favoritesHeaderHeart) {
-        favoritesHeaderHeart.textContent = '♥';
-      }
-
-      if (favoritesCount) {
-        const huidigeAantal = Number(favoritesCount.textContent) || 0;
-        favoritesCount.textContent = huidigeAantal + 1;
-        favoritesCount.classList.add('zichtbaar');
-      }
-
       setTimeout(() => {
         favoriteButton.classList.remove('success');
       }, 1500);
-    } else {
-      favoriteText.textContent = 'Niet gelukt';
     }
 
-    favoriteButton.disabled = false;
+    // Als opslaan niet goed ging
+    if (!response.ok) {
+      favoriteButton.disabled = false;
+      favoriteText.textContent = 'Niet gelukt';
+
+      setTimeout(() => {
+        favoriteHeart.textContent = '♡';
+        favoriteText.textContent = 'Bewaren';
+      }, 1500);
+    }
   });
 }
