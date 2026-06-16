@@ -3,6 +3,30 @@
 
 <main>
 
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/" aria-label="Home">
+      <img src="/style/assets/house@2x.svg" alt="">
+    </a>
+
+    <span>/</span>
+
+    <a href="#">
+      {{ house.city }}
+    </a>
+
+    <span>/</span>
+
+    <a href="#">
+      {{ house.city }} Plassengebied
+    </a>
+
+    <span>/</span>
+
+    <span>
+      {{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}
+    </span>
+  </nav>
+
   <section class="main-image">
     <img
       class="primary-image"
@@ -24,10 +48,10 @@
         <span>Delen</span>
       </button>
 
-      <form action="/favorieten/{{ house.id }}" method="POST">
+      <form action="/favorieten/{{ house.id }}" method="POST" class="favorite-form">
         <button type="submit" class="favorite-button">
-          <img src="/style/assets/heart@2x.svg" alt="">
-          <span>Bewaard</span>
+          <span class="favorite-heart">♡</span>
+          <span class="favorite-text">Bewaren</span>
         </button>
       </form>
     </div>
@@ -105,8 +129,6 @@
         <div class="description-text">
           {{ house.description }}
         </div>
-
-        <a href="#" class="read-more">Lees de volledige omschrijving</a>
       </section>
 
       <section class="features">
@@ -117,7 +139,7 @@
 
           <dl>
             <dt>Aangeboden sinds</dt>
-            <dd><a href="#">Log in om te bekijken</a></dd>
+            <dd>{{ house.listed_date | default: "Niet beschikbaar" }}</dd>
 
             <dt>Aanvaarding</dt>
             <dd>In overleg</dd>
@@ -141,10 +163,10 @@
             <dd>Bestaande bouw</dd>
 
             <dt>Bouwjaar</dt>
-            <dd>{{ house.build_year | default: "2017" }}</dd>
+            <dd>{{ house.build_year | default: "Niet beschikbaar" }}</dd>
 
             <dt>Soort dak</dt>
-            <dd>Mansarde dak</dd>
+            <dd>{{ house.roof_type | default: "Niet beschikbaar" }}</dd>
           </dl>
         </section>
 
@@ -158,14 +180,8 @@
             <dt>Perceel</dt>
             <dd>{{ house.m2_garden }} m²</dd>
 
-            <dt>Gebouwgebonden buitenruimte</dt>
-            <dd>150 m²</dd>
-
-            <dt>Externe bergruimte</dt>
-            <dd>17 m²</dd>
-
             <dt>Inhoud</dt>
-            <dd>4.300 m³</dd>
+            <dd>{{ house.volume | default: "Niet beschikbaar" }}</dd>
           </dl>
         </section>
 
@@ -177,16 +193,105 @@
             <dd>{{ house.rooms }} kamers</dd>
 
             <dt>Aantal slaapkamers</dt>
-            <dd>7 slaapkamers</dd>
+            <dd>{{ house.bedrooms | default: "Niet beschikbaar" }}</dd>
 
             <dt>Aantal badkamers</dt>
-            <dd>8 badkamers</dd>
+            <dd>{{ house.bathrooms | default: "Niet beschikbaar" }}</dd>
 
             <dt>Aantal woonlagen</dt>
-            <dd>3 woonlagen</dd>
+            <dd>{{ house.floors | default: "Niet beschikbaar" }}</dd>
           </dl>
         </section>
 
+        <section>
+          <h3>Energie</h3>
+
+          <dl>
+            <dt>Energielabel</dt>
+            <dd>{{ house.energy_label | default: "Niet beschikbaar" }}</dd>
+
+            <dt>Isolatie</dt>
+            <dd>{{ house.insulation | default: "Niet beschikbaar" }}</dd>
+
+            <dt>Verwarming</dt>
+            <dd>{{ house.heating | default: "Niet beschikbaar" }}</dd>
+          </dl>
+        </section>
+
+        <section>
+          <h3>Kadastrale gegevens</h3>
+
+          <dl>
+            <dt>Kadastrale gemeente</dt>
+            <dd>{{ house.city | default: "Niet beschikbaar" }}</dd>
+
+            <dt>Oppervlakte</dt>
+            <dd>{{ house.m2_garden | default: "Niet beschikbaar" }} m²</dd>
+
+            <dt>Eigendomssituatie</dt>
+            <dd>{{ house.ownership | default: "Volle eigendom" }}</dd>
+          </dl>
+        </section>
+      </section>
+
+      <section class="popularity">
+        <h2>Populariteit</h2>
+
+        <div class="popularity-card">
+          <div class="popularity-item">
+            <img src="/style/assets/eye@2x.svg" alt="">
+            <strong>{{ house.views | default: "227.286x" }}</strong>
+            <span>Bekeken</span>
+          </div>
+
+          <div class="popularity-item">
+            <img src="/style/assets/heart@2x.svg" alt="">
+            <strong>{{ house.saved_count | default: "1.900x" }}</strong>
+            <span>Bewaard</span>
+          </div>
+
+          <div class="popularity-item">
+            <img src="/style/assets/calendar@2x.svg" alt="">
+            <strong>{{ house.listed_date | default: "Niet beschikbaar" }}</strong>
+            <span>Op Funda</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="neighborhood">
+        <h2>Buurt</h2>
+
+        <div class="neighborhood-layout">
+          <article class="neighborhood-card">
+            <div class="neighborhood-header">
+              <img src="/style/assets/map@2x.svg" alt="">
+
+              <div>
+                <h3>{{ house.city }} Plassengebied</h3>
+                <p>{{ house.city }}</p>
+              </div>
+            </div>
+
+            <dl>
+              <dt>Inwoners</dt>
+              <dd>{{ house.population | default: "Niet beschikbaar" }}</dd>
+
+              <dt>Gezin met kinderen</dt>
+              <dd>{{ house.families_with_children | default: "Niet beschikbaar" }}</dd>
+
+              <dt>Gemiddelde leeftijd</dt>
+              <dd>{{ house.average_age | default: "Niet beschikbaar" }}</dd>
+
+              <dt>Woningen in de buurt</dt>
+              <dd>{{ house.neighborhood_houses | default: "Niet beschikbaar" }}</dd>
+            </dl>
+          </article>
+
+          <aside class="discover-neighborhood">
+            <h3>Ontdek de buurt</h3>
+            <p>Benieuwd naar het woningaanbod, bewoners en lokale makelaars?</p>
+          </aside>
+        </div>
       </section>
 
     </div>
@@ -222,11 +327,27 @@
       </div>
 
       <a href="{{ house.brochure }}" class="broker-download">
-        <span>⬇</span>
+        <img
+          src="/style/assets/download@2x.svg"
+          alt=""
+          class="broker-download-icon"
+        >
         <span>Download brochure</span>
       </a>
     </aside>
 
+  </div>
+
+  <div class="success-toast" id="successToast">
+    <div class="success-toast-bar"></div>
+    <div class="success-toast-icon">✓</div>
+
+    <div class="success-toast-content">
+      <strong>Je huis is bewaard</strong>
+      <p>Je vindt ’m onder ‘Favorieten’ in je account</p>
+    </div>
+
+    <button type="button" class="success-toast-close">×</button>
   </div>
 
 </main>
