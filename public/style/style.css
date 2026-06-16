@@ -25,6 +25,7 @@ button {
   cursor: pointer;
   font: inherit;
   border: none;
+  background: transparent;
 }
 
 main,
@@ -33,93 +34,91 @@ main,
   margin-inline: auto;
 }
 
-/* HEADER */
+/* HEADER MOBILE FIRST */
 
 .main-header {
   width: 100%;
   background: #ff9f1c;
 
   .main-nav {
-    padding-inline: 1rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 
     .main-nav-list {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
       align-items: center;
-      gap: 0.5rem;
-      min-height: 64px;
+      min-height: 84px;
       list-style: none;
-      overflow: visible;
+      gap: 0;
+      padding: 0;
 
       li {
         list-style: none;
-        flex-shrink: 0;
-      }
-
-      li:nth-last-child(3) {
-        margin-left: auto;
+        min-width: 0;
       }
 
       a,
       .menu-button {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 0.5rem;
-        padding: 0.875rem 1rem;
+
+        width: 100%;
+        min-height: 84px;
+        padding: 0.45rem 0.25rem;
+
         color: white;
         background: transparent;
-        border-radius: 0.25rem;
-        font-family: "Proxima Nova", Arial, sans-serif;
-        font-size: 1rem;
+        border-radius: 0;
+        font-size: 0.9rem;
         font-weight: 600;
-        line-height: 1;
+        line-height: 1.15;
+        text-align: center;
         text-decoration: none;
-        white-space: nowrap;
-        transition: background-color 0.15s ease-in-out;
+        white-space: normal;
 
         img,
         svg {
-          width: 1.35rem;
-          height: 1.35rem;
+          width: 1.65rem;
+          height: 1.65rem;
+          margin-bottom: 0.35rem;
           object-fit: contain;
           flex-shrink: 0;
         }
 
         &:hover {
-          background-color: #f28c00;
-        }
-
-        &:focus-visible {
-          outline: 2px solid white;
-          outline-offset: 2px;
+          background: #f28c00;
         }
       }
 
       .funda-logo {
-        width: 110px;
-        min-width: 110px;
+        width: 58px;
+        min-width: 58px;
         height: auto;
-        margin-right: 0.5rem;
-      }
-
-      .secondary-nav-item {
-        display: none;
+        margin: 0;
       }
 
       .account-link,
       .login-link {
         img,
         svg {
-          width: 1.8rem;
-          height: 1.8rem;
+          width: 1.85rem;
+          height: 1.85rem;
           filter: brightness(0) invert(1);
         }
+      }
+
+      .secondary-nav-item {
+        display: none;
       }
     }
   }
 }
 
-/* DETAILPAGINA */
+/* DETAILPAGINA MOBILE FIRST */
 
 .main-image {
   position: relative;
@@ -187,11 +186,6 @@ main,
 
     .favorite-button {
       color: #d93025;
-
-      img {
-        width: 1.15rem;
-        height: 1.15rem;
-      }
     }
   }
 }
@@ -200,13 +194,14 @@ main,
   margin-inline: 1rem;
   padding: 1rem 0;
   border-bottom: 1px solid var(--color-border);
+  overflow-x: auto;
 
   ul {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
+    gap: 1.25rem;
     list-style: none;
+    min-width: max-content;
   }
 
   li {
@@ -237,111 +232,6 @@ main,
   }
 }
 
-.detail-layout {
-  display: grid;
-  gap: 1.5rem;
-  margin: 1.25rem;
-
-  .detail-content {
-    min-width: 0;
-  }
-
-  .main-info,
-  .description,
-  .features {
-    margin: 0;
-  }
-
-  .main-info {
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .description {
-    padding-top: 1.5rem;
-  }
-
-  .broker-card {
-    overflow: hidden;
-    background: var(--color-white);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-medium);
-
-    .broker-card-top {
-      height: 4rem;
-      background: #e5f6ff;
-    }
-
-    .broker-card-content {
-      padding: 1.5rem;
-      text-align: center;
-
-      .broker-logo {
-        width: 2rem;
-        height: auto;
-        margin-left: auto;
-        margin-bottom: 1rem;
-      }
-
-      h2 {
-        max-width: 17rem;
-        margin-inline: auto;
-        margin-bottom: 1.5rem;
-        color: var(--color-secondary);
-        font-size: 1.45rem;
-        font-weight: var(--font-weight-bold);
-        line-height: 1.35;
-      }
-
-      .broker-phone {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.75rem;
-        color: var(--color-secondary);
-        font-size: 1.1rem;
-      }
-    }
-
-    .broker-card-actions {
-      padding: 1.25rem 1.75rem;
-      border-top: 1px solid var(--color-border);
-
-      .broker-contact-button,
-      .broker-viewing-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.75rem;
-        width: 100%;
-        padding: 1rem;
-        border-radius: var(--radius-small);
-        font-size: 1.1rem;
-        font-weight: var(--font-weight-bold);
-      }
-
-      .broker-contact-button {
-        color: var(--color-white);
-        background: #ff9f1c;
-      }
-
-      .broker-viewing-button {
-        margin-top: 1rem;
-        color: var(--color-secondary);
-        background: var(--color-white);
-      }
-    }
-
-    .broker-download {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 1.25rem 1.75rem;
-      color: var(--color-secondary);
-      font-size: 1.1rem;
-    }
-  }
-}
-
 .main-info {
   margin: 1.25rem;
   padding-bottom: 1rem;
@@ -361,10 +251,11 @@ main,
   h1 {
     font-size: 1.75rem;
     font-weight: var(--font-weight-bold);
+    line-height: 1.2;
   }
 
   .zip-code-wrapper {
-    margin-bottom: 1rem;
+    margin-block: 0.5rem 1rem;
   }
 
   .zip-code {
@@ -379,7 +270,8 @@ main,
 
   .main-info-list {
     display: grid;
-    gap: 0.5rem;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
 
     div {
       display: flex;
@@ -392,8 +284,18 @@ main,
   }
 }
 
-.description {
+.detail-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
   margin: 1.25rem;
+
+  .detail-content {
+    min-width: 0;
+  }
+}
+
+.description {
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--color-border);
 
@@ -404,6 +306,7 @@ main,
 
   .description-text {
     max-width: 760px;
+    line-height: 1.8;
   }
 
   .read-more {
@@ -414,7 +317,7 @@ main,
 }
 
 .features {
-  margin: 1.25rem;
+  margin-top: 1.5rem;
 
   h2 {
     margin-bottom: 1rem;
@@ -430,21 +333,240 @@ main,
 
     h3 {
       margin-bottom: 0.75rem;
+      font-size: 1.1rem;
     }
 
     dl {
       display: grid;
+      grid-template-columns: 1fr;
 
       dt,
       dd {
-        padding: 0.55rem 0;
+        padding: 0.65rem 0;
         border-top: 1px solid var(--color-border);
       }
 
       dt {
         color: var(--color-text-light);
       }
+
+      dd {
+        font-weight: 500;
+      }
     }
+  }
+}
+
+/* POPULARITEIT */
+
+.popularity {
+  margin-top: 2rem;
+
+  h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .popularity-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: hidden;
+    background: var(--color-white);
+    border: 1px solid #dddddd;
+    border-radius: 0.5rem;
+  }
+
+  .popularity-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 7.5rem;
+    padding: 1.25rem;
+    text-align: center;
+    border-bottom: 1px solid #dddddd;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-bottom: 0.5rem;
+      object-fit: contain;
+    }
+
+    strong {
+      display: block;
+      font-size: 1.15rem;
+      font-weight: var(--font-weight-bold);
+    }
+
+    span {
+      display: block;
+    }
+  }
+}
+
+/* BUURT */
+
+.neighborhood {
+  margin-top: 2rem;
+
+  h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .neighborhood-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .neighborhood-card {
+    padding: 1.25rem;
+    background: var(--color-white);
+    border: 1px solid #dddddd;
+    border-radius: 0.5rem;
+  }
+
+  .neighborhood-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    img {
+      width: 4.5rem;
+      height: 4.5rem;
+      object-fit: contain;
+    }
+
+    h3 {
+      margin: 0;
+      color: #0071ce;
+      font-size: 1.25rem;
+    }
+
+    p {
+      margin-top: 0.25rem;
+    }
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  dt,
+  dd {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #dddddd;
+  }
+
+  dt {
+    color: var(--color-text-light);
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .discover-neighborhood {
+    padding: 1.5rem;
+    background: #e5f6ff;
+    border-radius: 0.5rem;
+
+    h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.25rem;
+    }
+  }
+}
+
+/* BROKER CARD */
+
+.broker-card {
+  overflow: hidden;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+
+  .broker-card-top {
+    height: 4rem;
+    background: #e5f6ff;
+  }
+
+  .broker-card-content {
+    padding: 1.5rem;
+    text-align: center;
+
+    .broker-logo {
+      width: 2rem;
+      height: auto;
+      margin-left: auto;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      max-width: 17rem;
+      margin-inline: auto;
+      margin-bottom: 1.5rem;
+      color: var(--color-secondary);
+      font-size: 1.45rem;
+      font-weight: var(--font-weight-bold);
+      line-height: 1.35;
+    }
+
+    .broker-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--color-secondary);
+      font-size: 1.1rem;
+    }
+  }
+
+  .broker-card-actions {
+    padding: 1.25rem 1.75rem;
+    border-top: 1px solid var(--color-border);
+
+    .broker-contact-button,
+    .broker-viewing-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      width: 100%;
+      padding: 1rem;
+      border-radius: var(--radius-small);
+      font-size: 1.1rem;
+      font-weight: var(--font-weight-bold);
+    }
+
+    .broker-contact-button {
+      color: var(--color-white);
+      background: #ff9f1c;
+    }
+
+    .broker-viewing-button {
+      margin-top: 1rem;
+      color: var(--color-secondary);
+      background: var(--color-white);
+    }
+  }
+
+  .broker-download {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem 1.75rem;
+    color: var(--color-secondary);
+    font-size: 1.1rem;
   }
 }
 
@@ -525,8 +647,8 @@ main,
 
 .favorites-page {
   min-height: 100vh;
-  background: #e5f6ff;
   padding: 2rem 1rem 5rem;
+  background: #e5f6ff;
 
   .favorites-container {
     width: min(100%, 1180px);
@@ -714,105 +836,27 @@ main,
   }
 }
 
-/* MOBILE */
-
-@media (max-width: 600px) {
-  .main-header {
-    .main-nav {
-      padding-inline: 1rem;
-
-      .main-nav-list {
-        justify-content: space-between;
-        min-height: 74px;
-        gap: 0.5rem;
-
-        a,
-        .menu-button {
-          flex-direction: column;
-          gap: 0.25rem;
-          padding: 0.5rem;
-          font-size: 0.85rem;
-
-          img,
-          svg {
-            width: 1.2rem;
-            height: 1.2rem;
-          }
-        }
-
-        .funda-logo {
-          width: 82px;
-          min-width: 82px;
-        }
-
-        .account-link,
-        .login-link {
-          img,
-          svg {
-            width: 1.7rem;
-            height: 1.7rem;
-            filter: brightness(0) invert(1);
-          }
-        }
-      }
-    }
-  }
-
-  .main-image {
-    .gallery-actions {
-      top: 0.75rem;
-      right: 0.75rem;
-      gap: 0.5rem;
-
-      .share-button,
-      .favorite-button {
-        padding: 0.75rem 0.9rem;
-        font-size: 0.9rem;
-
-        img {
-          width: 1rem;
-          height: 1rem;
-        }
-      }
-    }
-  }
-}
-
 /* EXTRA SMALL MOBILE */
 
 @media (max-width: 320px) {
   .main-header {
     .main-nav {
-      padding-inline: 0.5rem;
-
       .main-nav-list {
-        gap: 0.35rem;
-
         a,
         .menu-button {
-          padding: 0.45rem;
           font-size: 0.75rem;
+          padding: 0.4rem 0.15rem;
 
           img,
           svg {
-            width: 1rem;
-            height: 1rem;
+            width: 1.35rem;
+            height: 1.35rem;
           }
         }
 
         .funda-logo {
-          width: 72px;
-          min-width: 72px;
-        }
-
-        .account-link,
-        .login-link {
-          img,
-          svg {
-            width: 1.5rem;
-            height: 1.5rem;
-            filter: brightness(0) invert(1);
-          }
+          width: 48px;
+          min-width: 48px;
         }
       }
     }
@@ -820,6 +864,8 @@ main,
 
   .main-image {
     .gallery-actions {
+      gap: 0.5rem;
+
       .share-button,
       .favorite-button {
         padding: 0.65rem 0.75rem;
@@ -829,10 +875,6 @@ main,
   }
 
   .media-options {
-    ul {
-      gap: 0.4rem;
-    }
-
     a {
       font-size: 0.85rem;
 
@@ -883,25 +925,32 @@ main,
     }
   }
 
+  .popularity {
+    .popularity-card {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .popularity-item {
+      border-bottom: none;
+      border-right: 1px solid #dddddd;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+
+  .neighborhood {
+    dl {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
   .houses-page,
   .favorites-page {
     .houses-grid,
     .houses-list {
       grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  .favorites-page {
-    h1 {
-      font-size: 2.4rem;
-    }
-
-    .empty-state {
-      margin-top: 4rem;
-
-      .empty-icon {
-        font-size: 5.5rem;
-      }
     }
   }
 
@@ -918,7 +967,12 @@ main,
 @media (min-width: 900px) {
   .main-header {
     .main-nav {
+      width: min(100%, 1180px);
+      margin-inline: auto;
+      padding-inline: 1rem;
+
       .main-nav-list {
+        display: flex;
         justify-content: flex-start;
         gap: 0.5rem;
         min-height: 64px;
@@ -938,27 +992,24 @@ main,
         a,
         .menu-button {
           flex-direction: row;
-          align-items: center;
-          justify-content: center;
+          width: auto;
+          min-height: 64px;
           gap: 0.5rem;
           padding: 0.875rem 1rem;
           font-size: 1rem;
+          white-space: nowrap;
 
           img,
           svg {
             width: 1.35rem;
             height: 1.35rem;
-          }
-
-          &:hover {
-            background-color: #f28c00;
+            margin-bottom: 0;
           }
         }
 
         .funda-logo {
           width: 110px;
           min-width: 110px;
-          height: auto;
           margin-right: 0.5rem;
         }
 
@@ -968,7 +1019,6 @@ main,
           svg {
             width: 2rem;
             height: 2rem;
-            filter: brightness(0) invert(1);
           }
         }
       }
@@ -999,19 +1049,17 @@ main,
       .share-button,
       .favorite-button {
         padding: 1rem 1.5rem;
-
-        img {
-          width: 1.15rem;
-          height: 1.15rem;
-        }
       }
     }
   }
 
   .media-options {
+    overflow-x: visible;
+
     ul {
       justify-content: flex-start;
       gap: 2rem;
+      min-width: 0;
     }
 
     li:last-child {
@@ -1046,7 +1094,9 @@ main,
 
   .main-info,
   .description,
-  .features {
+  .features,
+  .popularity,
+  .neighborhood {
     max-width: 760px;
   }
 
@@ -1067,12 +1117,6 @@ main,
     .houses-grid {
       grid-template-columns: repeat(3, 1fr);
     }
-
-    .house-card {
-      img {
-        height: 220px;
-      }
-    }
   }
 
   .footer {
@@ -1091,3 +1135,386 @@ main,
     }
   }
 }
+.success-toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  width: 360px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 18px 18px 22px;
+  opacity: 0;
+  transform: translateX(120%);
+  transition: all 0.35s ease;
+  z-index: 9999;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.success-toast.show {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.success-toast-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: #198754;
+}
+
+.success-toast-icon {
+  min-width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #198754;
+  color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.success-toast-content strong {
+  display: block;
+  font-size: 16px;
+  color: #111827;
+  margin-bottom: 5px;
+}
+
+.success-toast-content p {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.success-toast-close {
+  margin-left: auto;
+  background: none;
+  border: 0;
+  font-size: 22px;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------
+   FIXES: breadcrumb + brochure icon
+   Deze regels staan onderaan zodat ze eerdere styling overrulen.
+-------------------------------------------------- */
+
+/* Breadcrumb mobile first */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  width: min(100% - 2rem, 1180px);
+  margin: 1rem auto;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.breadcrumb a {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-secondary);
+  font-weight: 500;
+}
+
+.breadcrumb span {
+  color: var(--color-text-light);
+}
+
+.breadcrumb span:last-child {
+  color: var(--color-text);
+}
+
+.breadcrumb img {
+  width: 1.25rem;
+  height: 1.25rem;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Broker download */
+.broker-card .broker-download {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.75rem;
+  color: var(--color-secondary);
+  font-size: 1.1rem;
+}
+
+.broker-card .broker-download-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Kleine iconen binnen broker-card knoppen */
+.broker-card-actions img,
+.broker-phone img {
+  width: 1.15rem;
+  height: 1.15rem;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Tablet */
+@media (min-width: 600px) {
+  .breadcrumb {
+    margin: 1.25rem auto 1rem;
+  }
+
+  .breadcrumb img {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 900px) {
+  .breadcrumb {
+    margin: 1.5rem auto 1rem;
+    padding-inline: 0;
+    font-size: 1.05rem;
+  }
+
+  .breadcrumb img {
+    width: 1.45rem;
+    height: 1.45rem;
+  }
+
+  .broker-card .broker-download-icon {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+}
+
+/* ==================================================
+   DEFINITIEVE HEADER + LOGO FIX
+   Zet dit onderaan zodat eerdere regels niet winnen.
+================================================== */
+
+/* Header desktop */
+@media (min-width: 900px) {
+  .main-header {
+    background: #ff9f1c;
+  }
+
+  .main-header .main-nav {
+    width: min(100%, 1180px);
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  .main-header .main-nav-list {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    min-height: 64px;
+    list-style: none;
+  }
+
+  .main-header .main-nav-list li {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .main-header .main-nav-list .logo-item {
+    margin-right: 1.75rem;
+  }
+
+  .main-header .main-nav-list .logo-item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 64px;
+    width: auto;
+    padding: 0;
+  }
+
+  .main-header .main-nav-list .funda-logo {
+    display: block;
+    width: 120px !important;
+    min-width: 120px !important;
+    max-width: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    object-fit: contain;
+  }
+
+  .main-header .main-nav-list a:not(.logo-item a),
+  .main-header .main-nav-list .menu-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: auto;
+    min-height: 64px;
+    padding: 0;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .main-header .main-nav-list a:not(.logo-item a):hover,
+  .main-header .main-nav-list .menu-button:hover {
+    background: transparent;
+  }
+
+  .main-header .main-nav-list a:not(.logo-item a) img,
+  .main-header .main-nav-list a:not(.logo-item a) svg,
+  .main-header .main-nav-list .menu-button img,
+  .main-header .main-nav-list .menu-button svg {
+    width: 1.45rem !important;
+    height: 1.45rem !important;
+    margin: 0 !important;
+    object-fit: contain;
+  }
+
+  .main-header .main-nav-list li:nth-last-child(3) {
+    margin-left: auto;
+  }
+}
+
+/* Header mobiel */
+@media (max-width: 899px) {
+  .main-header .main-nav {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-header .main-nav-list {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    min-height: 84px;
+    list-style: none;
+  }
+
+  .main-header .main-nav-list li {
+    min-width: 0;
+  }
+
+  .main-header .main-nav-list a,
+  .main-header .main-nav-list .menu-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    width: 100%;
+    min-height: 84px;
+    padding: 0.45rem 0.25rem;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.15;
+    text-align: center;
+  }
+
+  .main-header .main-nav-list .logo-item a {
+    padding: 0;
+  }
+
+  .main-header .main-nav-list .funda-logo {
+    width: 72px !important;
+    min-width: 72px !important;
+    max-width: none !important;
+    height: auto !important;
+    margin: 0 !important;
+    object-fit: contain;
+  }
+
+  .main-header .main-nav-list a:not(.logo-item a) img,
+  .main-header .main-nav-list a:not(.logo-item a) svg,
+  .main-header .main-nav-list .menu-button img,
+  .main-header .main-nav-list .menu-button svg {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    margin-bottom: 0.25rem;
+    object-fit: contain;
+  }
+}
+
+/* Breadcrumb: huisje klein */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  width: min(100% - 2rem, 1180px);
+  margin: 1rem auto;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.breadcrumb a {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-secondary);
+  font-weight: 500;
+}
+
+.breadcrumb span {
+  color: var(--color-text-light);
+}
+
+.breadcrumb span:last-child {
+  color: var(--color-text);
+}
+
+.breadcrumb img {
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+@media (min-width: 900px) {
+  .breadcrumb {
+    margin: 1.5rem auto 1rem;
+    font-size: 1.05rem;
+  }
+
+  .breadcrumb img {
+    width: 1.35rem !important;
+    height: 1.35rem !important;
+  }
+}
+
+/* Broker download: brochure-icon klein */
+.broker-card .broker-download {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.75rem;
+  color: var(--color-secondary);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.broker-card .broker-download-icon {
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
