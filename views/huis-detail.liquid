@@ -105,7 +105,7 @@
       <a href="#">{{ house.city }} Plassengebied</a>
     </div>
 
-    <p class="price">€ {{ house.price }} k.k.</p>
+    <p class="price">€ {{ house.priceFormatted }} k.k.</p>
 
     <dl class="main-info-list">
       <div>
@@ -151,7 +151,7 @@
             <dd>In overleg</dd>
 
             <dt>Vraagprijs</dt>
-            <dd>€ {{ house.price }} kosten koper</dd>
+           <dd>€ {{ house.priceFormatted }} kosten koper</dd>
 
             <dt>Status</dt>
             <dd>{{ house.status | default: "Beschikbaar" }}</dd>
