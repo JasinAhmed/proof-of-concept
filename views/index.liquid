@@ -2,7 +2,7 @@
 {% render 'partials/header.liquid' %}
 
 <main class="houses-page">
-    <section class="houses-hero" aria-labelledby="houses-title">
+    <section class="houses-hero">
         <h1 id="houses-title">Huizen te koop</h1>
 
         <form class="houses-sort-form" method="GET" action="/">
@@ -22,9 +22,7 @@
         </form>
     </section>
 
-    <section class="houses-section" aria-labelledby="houses-list-title">
-        <h2 id="houses-list-title" class="visually-hidden">Woningen overzicht</h2>
-
+    <section class="houses-section">
         <ul class="houses-grid">
             {% for house in houses %}
                 <li class="house-item">
@@ -47,7 +45,7 @@
                                 {{ house.city }}
                             </p>
 
-                            <strong>€ {{ house.price }} k.k.</strong>
+                            <strong>€ {{ house.priceFormatted }} k.k.</strong>
 
                             <dl class="house-features">
                                 <div>
