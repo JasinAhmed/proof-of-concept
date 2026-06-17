@@ -666,7 +666,9 @@ main,
     font-weight: var(--font-weight-bold);
   }
 
-  .title-line {
+  .page-title::after {
+    content: "";
+    display: block;
     width: 55px;
     height: 4px;
     margin-top: 1.5rem;
@@ -747,20 +749,11 @@ main,
     box-shadow: var(--shadow-small);
 
     .empty-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
+      display: block;
+      width: 4.5rem;
+      height: 4.5rem;
       margin-bottom: 1.5rem;
-      line-height: 1;
-
-      img,
-      svg {
-        display: block;
-        width: 4.5rem;
-        height: 4.5rem;
-        object-fit: contain;
-      }
+      object-fit: contain;
     }
 
     h2 {
@@ -1619,7 +1612,6 @@ main,
 }
 
 .houses-grid {
-    list-style: none;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
@@ -1813,4 +1805,281 @@ main,
   min-width: 18px !important;
   max-width: 18px !important;
   object-fit: contain !important;
+}
+/* Krijn feedback fixes */
+
+/* Vervangt de loze .title-line div */
+.page-title::after {
+  content: "";
+  display: block;
+  width: 55px;
+  height: 4px;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  background: var(--color-primary);
+  border-radius: 999px;
+}
+
+/* Als .title-line nog per ongeluk in HTML staat */
+.title-line {
+  display: none;
+}
+
+/* Article woningkaarten */
+.houses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.house-card {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: white;
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.house-card > a {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.house-card-image,
+.house-card > a > img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+/* Empty state: als img direct class empty-icon heeft */
+.empty-state > .empty-icon {
+  width: 4.5rem;
+  height: 4.5rem;
+  margin: 0 auto 1.5rem;
+  object-fit: contain;
+}
+
+/* House features als dl */
+.house-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.house-features div {
+  display: flex;
+  flex-direction: column;
+}
+
+.house-features dt {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.house-features dd {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Iconen via CSS i.p.v. emoji in HTML */
+.house-feature-area dd::before {
+  content: "🏠";
+}
+
+.house-feature-rooms dd::before {
+  content: "🚪";
+}
+
+/* Media thumbnail iconen via CSS i.p.v. spans */
+.media-thumb {
+  position: relative;
+}
+
+.media-thumb::after {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  color: white;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.media-thumb-floorplan::after {
+  content: "↗";
+}
+
+.media-thumb-video::after {
+  content: "▶";
+}
+
+/* Als oude spans nog bestaan: verbergen */
+.media-thumb > span {
+  display: none;
+}
+
+/* Broker decoratieve bovenkant zonder loze div */
+.broker-card {
+  position: relative;
+}
+
+.broker-card::before {
+  content: "";
+  display: block;
+  height: 4rem;
+  background: #e5f6ff;
+}
+
+.broker-card-top {
+  display: none;
+}
+
+/* Broker emoji's via CSS */
+.broker-phone::before {
+  content: "📞";
+}
+
+.broker-contact-button::before {
+  content: "✉";
+}
+
+.broker-viewing-button::before {
+  content: "📅";
+}
+.houses-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.house-card {
+  overflow: hidden;
+  border-radius: 1rem;
+  background: white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.house-card > a {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.house-card:hover {
+  transform: translateY(-4px);
+}
+
+.house-card-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.house-card-content {
+  padding: 1rem;
+}
+
+.house-card-content h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.house-card-content p {
+  margin: 0 0 0.75rem;
+  color: #4b5563;
+}
+
+.house-card-content strong {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.house-features {
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+}
+
+.house-feature {
+  display: flex;
+  flex-direction: column;
+}
+
+.house-feature dt {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.house-feature dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.house-feature-area dd::before {
+  content: "🏠 ";
+}
+
+.house-feature-rooms dd::before {
+  content: "🚪 ";
+}
+
+@media (max-width: 899px) {
+  .houses-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 599px) {
+  .houses-section {
+    grid-template-columns: 1fr;
+  }
+}
+.menu-button::before {
+  content: "☰";
+}
+
+.home-link::before {
+  content: "⌂";
+}
+
+.favorites-link::before {
+  content: "♡";
+}
+
+.menu-button::before,
+.home-link::before,
+.favorites-link::before {
+  display: block;
+  font-size: 1.4rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+@media (min-width: 900px) {
+  .menu-button::before,
+  .home-link::before,
+  .favorites-link::before {
+    display: inline-block;
+    margin-right: 0.5rem;
+    margin-bottom: 0;
+  }
 }
