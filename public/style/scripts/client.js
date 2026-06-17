@@ -1,23 +1,30 @@
-// Ik pak het formulier van de bewaar-knop
+// Sorteerformulier op de overzichtspagina
+const sortSelect = document.querySelector('#sort');
+
+if (sortSelect) {
+  sortSelect.addEventListener('change', () => {
+    sortSelect.form.submit();
+  });
+}
+
+// Formulier van de bewaar-knop
 const favoriteForm = document.querySelector('.favorite-form');
 
-// Ik pak de toast melding
+// Toast melding
 const successToast = document.querySelector('#successToast');
-
-// Ik pak de tekst in de toast melding
 const successToastTitle = document.querySelector('.success-toast-content strong');
 const successToastText = document.querySelector('.success-toast-content p');
-
-// Ik pak de sluitknop van de toast
 const successToastClose = document.querySelector('.success-toast-close');
 
-// Hier sla ik de timer op, zodat de toast vanzelf weer weggaat
 let toastTimer;
 
-// Deze functie laat de melding zien
 function showToast(title, text) {
+  if (!successToast || !successToastTitle || !successToastText) {
+    return;
+  }
+
   successToastTitle.textContent = title;
-  successToastText.textContent = text;
+  successToastText.innerHTML = text;
 
   successToast.classList.add('show');
 
@@ -25,28 +32,24 @@ function showToast(title, text) {
 
   toastTimer = setTimeout(() => {
     successToast.classList.remove('show');
-  }, 3500);
+  }, 4000);
 }
 
-// Als je op het kruisje klikt, verdwijnt de melding
-if (successToastClose) {
+if (successToastClose && successToast) {
   successToastClose.addEventListener('click', () => {
     clearTimeout(toastTimer);
     successToast.classList.remove('show');
   });
 }
 
-// Alleen uitvoeren als het formulier bestaat
 if (favoriteForm) {
   const favoriteButton = favoriteForm.querySelector('.favorite-button');
   const favoriteHeart = favoriteForm.querySelector('.favorite-heart');
   const favoriteText = favoriteForm.querySelector('.favorite-text');
 
-  // Ik gebruik het huis-id om te onthouden welk huis al bewaard is
   const houseId = favoriteForm.dataset.houseId;
   const storageKey = 'favorite-house-' + houseId;
 
-  // Als het huis al eerder is bewaard, zet ik de knop meteen op "Bewaard"
   if (localStorage.getItem(storageKey) === 'true') {
     favoriteButton.classList.add('is-favorite');
     favoriteHeart.textContent = '♥';
@@ -56,7 +59,6 @@ if (favoriteForm) {
   favoriteForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    // Als het huis al is opgeslagen, haal ik hem weer uit favorieten
     if (localStorage.getItem(storageKey) === 'true') {
       localStorage.removeItem(storageKey);
 
@@ -72,7 +74,6 @@ if (favoriteForm) {
       return;
     }
 
-    // Loading state
     favoriteButton.classList.add('loading');
     favoriteButton.disabled = true;
     favoriteText.textContent = 'Bezig...';
@@ -84,11 +85,9 @@ if (favoriteForm) {
       body: new URLSearchParams(formData)
     });
 
-    // Loading state weghalen
     favoriteButton.classList.remove('loading');
     favoriteButton.disabled = false;
 
-    // Als opslaan goed ging
     if (response.ok) {
       localStorage.setItem(storageKey, 'true');
 
@@ -99,8 +98,8 @@ if (favoriteForm) {
       favoriteText.textContent = 'Bewaard';
 
       showToast(
-        'Woning opgeslagen',
-        'Deze woning is toegevoegd aan je favorieten.'
+        'Je huis is bewaard',
+        'Je vindt &apos;m onder <a href="/favorieten">Favorieten</a> in je account'
       );
 
       setTimeout(() => {
@@ -108,9 +107,13 @@ if (favoriteForm) {
       }, 1500);
     }
 
-    // Als opslaan niet goed ging
     if (!response.ok) {
       favoriteText.textContent = 'Niet gelukt';
+
+      showToast(
+        'Opslaan niet gelukt',
+        'Probeer het later opnieuw.'
+      );
 
       setTimeout(() => {
         favoriteHeart.textContent = '♡';
