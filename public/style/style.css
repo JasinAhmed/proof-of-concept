@@ -2083,3 +2083,71 @@ main,
     margin-bottom: 0;
   }
 }
+/* Scroll-driven animation: progressive enhancement */
+@supports (animation-timeline: view()) {
+  .description,
+  .features,
+  .popularity,
+  .neighborhood {
+    animation-name: fade-in-up;
+    animation-duration: 1ms;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Respecteert gebruikers die animaties uit hebben staan */
+@media (prefers-reduced-motion: reduce) {
+  .description,
+  .features,
+  .popularity,
+  .neighborhood {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+@supports (animation-timeline: view()) {
+  .house-card {
+    animation-name: card-fade-in;
+    animation-duration: 1ms;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 25%;
+  }
+
+  @keyframes card-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .house-card {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
