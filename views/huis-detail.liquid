@@ -4,7 +4,7 @@
 <main>
 
   <nav class="breadcrumb">
-    <a href="/" aria-label="Home">
+    <a href="/">
       <img src="/style/assets/house@2x.svg" alt="">
     </a>
 
@@ -39,11 +39,28 @@
 
       <form action="/favorieten/{{ house.id }}" method="POST" class="favorite-form" data-house-id="{{ house.id }}">
         <button type="submit" class="favorite-button" id="favoriteButton">
-          <span class="favorite-heart" aria-hidden="true">♡</span>
+          <span class="favorite-heart">♡</span>
           <span class="favorite-text">Bewaren</span>
         </button>
       </form>
     </div>
+  </div>
+
+  <div class="media-thumbnails">
+    <a href="#" class="media-thumb">
+      <img src="/style/assets/floorplan@2x.svg" alt="">
+      <span>↗</span>
+      <p>Plattegrond</p>
+    </a>
+
+    <a href="#" class="media-thumb">
+      <img
+        src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=500"
+        alt=""
+      >
+      <span>▶</span>
+      <p>Video</p>
+    </a>
   </div>
 
   <div class="media-options">
