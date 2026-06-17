@@ -5,7 +5,12 @@
 
   <nav class="breadcrumb">
     <a href="/">
-      <img src="/style/assets/house@2x.svg" alt="">
+      <img
+        src="/style/assets/house@2x.svg"
+        alt=""
+        width="24"
+        height="24"
+      >
     </a>
 
     <span>/</span>
@@ -16,20 +21,21 @@
     <span>{{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}</span>
   </nav>
 
-  <div class="main-image">
+  <section class="main-image">
     <img
       class="primary-image"
       src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=1200"
-      alt="{{ house.street }}"
+      alt=""
       width="1200"
       height="800"
+      fetchpriority="high"
     >
 
     {% for image in house.gallery limit:4 %}
       <img
         class="secondary-image"
         src="https://fdnd-agency.directus.app/assets/{{ image.directus_files_id }}?width=700"
-        alt="Foto van {{ house.street }}"
+        alt=""
         loading="lazy"
         width="700"
         height="500"
@@ -38,27 +44,36 @@
 
     <div class="gallery-actions">
       <button type="button" class="share-button">
-        <img src="/style/assets/share@2x.svg" alt="">
+        <img
+          src="/style/assets/share@2x.svg"
+          alt=""
+          width="24"
+          height="24"
+        >
         <span>Delen</span>
       </button>
 
       <form action="/favorieten/{{ house.id }}" method="POST" class="favorite-form" data-house-id="{{ house.id }}">
         <button type="submit" class="favorite-button" id="favoriteButton">
-          <span class="favorite-heart">♡</span>
+          <span class="favorite-heart"></span>
           <span class="favorite-text">Bewaren</span>
         </button>
       </form>
     </div>
-  </div>
+  </section>
 
-  <div class="media-thumbnails">
-    <a href="#" class="media-thumb">
-      <img src="/style/assets/floorplan@2x.svg" alt="">
-      <span>↗</span>
+  <section class="media-thumbnails">
+    <a href="#" class="media-thumb media-thumb-floorplan">
+      <img
+        src="/style/assets/floorplan@2x.svg"
+        alt=""
+        width="136"
+        height="92"
+      >
       <p>Plattegrond</p>
     </a>
 
-    <a href="#" class="media-thumb">
+    <a href="#" class="media-thumb media-thumb-video">
       <img
         src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=350"
         alt=""
@@ -66,16 +81,20 @@
         width="350"
         height="250"
       >
-      <span>▶</span>
       <p>Video</p>
     </a>
-  </div>
+  </section>
 
-  <div class="media-options">
+  <nav class="media-options">
     <ul>
       <li>
         <a href="#">
-          <img src="/style/assets/images@2x.svg" alt="">
+          <img
+            src="/style/assets/images@2x.svg"
+            alt=""
+            width="24"
+            height="24"
+          >
           <span>Foto's</span>
           <small>{{ house.gallery | size | plus: 1 }}</small>
         </a>
@@ -83,7 +102,12 @@
 
       <li>
         <a href="#">
-          <img src="/style/assets/floorplan@2x.svg" alt="">
+          <img
+            src="/style/assets/floorplan@2x.svg"
+            alt=""
+            width="24"
+            height="24"
+          >
           <span>Plattegrond</span>
           <small>7</small>
         </a>
@@ -91,19 +115,29 @@
 
       <li>
         <a href="#">
-          <img src="/style/assets/video@2x.svg" alt="">
+          <img
+            src="/style/assets/video@2x.svg"
+            alt=""
+            width="24"
+            height="24"
+          >
           <span>Video</span>
         </a>
       </li>
 
       <li>
         <a href="#">
-          <img src="/style/assets/overview@2x.svg" alt="">
+          <img
+            src="/style/assets/overview@2x.svg"
+            alt=""
+            width="24"
+            height="24"
+          >
           <span>Alle media</span>
         </a>
       </li>
     </ul>
-  </div>
+  </nav>
 
   <section class="main-info">
     <h1>{{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}</h1>
@@ -159,7 +193,7 @@
             <dd>In overleg</dd>
 
             <dt>Vraagprijs</dt>
-           <dd>€ {{ house.priceFormatted }} kosten koper</dd>
+            <dd>€ {{ house.priceFormatted }} kosten koper</dd>
 
             <dt>Status</dt>
             <dd>{{ house.status | default: "Beschikbaar" }}</dd>
@@ -252,23 +286,38 @@
         <h2>Populariteit</h2>
 
         <div class="popularity-card">
-          <div class="popularity-item">
-            <img src="/style/assets/eye@2x.svg" alt="">
+          <article class="popularity-item">
+            <img
+              src="/style/assets/eye@2x.svg"
+              alt=""
+              width="24"
+              height="24"
+            >
             <strong>{{ house.views | default: "227.286x" }}</strong>
             <span>Bekeken</span>
-          </div>
+          </article>
 
-          <div class="popularity-item">
-            <img src="/style/assets/heart@2x.svg" alt="">
+          <article class="popularity-item">
+            <img
+              src="/style/assets/heart@2x.svg"
+              alt=""
+              width="24"
+              height="24"
+            >
             <strong>{{ house.saved_count | default: "1.900x" }}</strong>
             <span>Bewaard</span>
-          </div>
+          </article>
 
-          <div class="popularity-item">
-            <img src="/style/assets/calendar@2x.svg" alt="">
+          <article class="popularity-item">
+            <img
+              src="/style/assets/calendar@2x.svg"
+              alt=""
+              width="24"
+              height="24"
+            >
             <strong>{{ house.listed_date | default: "Niet beschikbaar" }}</strong>
             <span>Op Funda</span>
-          </div>
+          </article>
         </div>
       </section>
 
@@ -277,14 +326,19 @@
 
         <div class="neighborhood-layout">
           <article class="neighborhood-card">
-            <div class="neighborhood-header">
-              <img src="/style/assets/map@2x.svg" alt="">
+            <header class="neighborhood-header">
+              <img
+                src="/style/assets/map@2x.svg"
+                alt=""
+                width="72"
+                height="72"
+              >
 
               <div>
                 <h3>{{ house.city }} Plassengebied</h3>
                 <p>{{ house.city }}</p>
               </div>
-            </div>
+            </header>
 
             <dl>
               <dt>Inwoners</dt>
@@ -311,31 +365,28 @@
     </div>
 
     <aside class="broker-card">
-      <div class="broker-card-top"></div>
-
       <div class="broker-card-content">
         <img
           class="broker-logo"
           src="/style/assets/Logo.svg"
-          alt="{{ house.agent }}"
+          alt=""
+          width="32"
+          height="32"
         >
 
         <h2>{{ house.agent | default: "The Agency The Netherlands" }}</h2>
 
         <a href="tel:{{ house.agent_phone }}" class="broker-phone">
-          <span>📞</span>
           <span>Toon telefoonnummer</span>
         </a>
       </div>
 
       <div class="broker-card-actions">
         <a href="#" class="broker-contact-button">
-          <span>✉</span>
           <span>Neem contact op</span>
         </a>
 
         <a href="#" class="broker-viewing-button">
-          <span>📅</span>
           <span>Vraag bezichtiging aan</span>
         </a>
       </div>
@@ -345,6 +396,8 @@
           src="/style/assets/download@2x.svg"
           alt=""
           class="broker-download-icon"
+          width="24"
+          height="24"
         >
         <span>Download brochure</span>
       </a>
@@ -352,17 +405,16 @@
 
   </div>
 
-  <div class="success-toast" id="successToast">
-    <div class="success-toast-bar"></div>
-    <div class="success-toast-icon">✓</div>
-
+  <section class="success-toast" id="successToast">
     <div class="success-toast-content">
       <strong>Woning opgeslagen</strong>
       <p>Deze woning is toegevoegd aan je favorieten.</p>
     </div>
 
-    <button type="button" class="success-toast-close">×</button>
-  </div>
+    <button type="button" class="success-toast-close">
+      <span class="visually-hidden">Melding sluiten</span>
+    </button>
+  </section>
 
 </main>
 
