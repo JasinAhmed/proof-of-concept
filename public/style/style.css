@@ -34,7 +34,7 @@ main,
   margin-inline: auto;
 }
 
-/* HEADER MOBILE FIRST */
+/* Header */
 
 .main-header {
   width: 100%;
@@ -118,7 +118,63 @@ main,
   }
 }
 
-/* DETAILPAGINA MOBILE FIRST */
+.menu-button::before {
+  content: "☰";
+}
+
+.home-link::before {
+  content: "⌂";
+}
+
+.favorites-link::before {
+  content: "♡";
+}
+
+.menu-button::before,
+.home-link::before,
+.favorites-link::before {
+  display: block;
+  font-size: 1.4rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+/* BREADCRUMB */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  width: min(100% - 2rem, 1180px);
+  margin: 1rem auto;
+  font-size: 1rem;
+  line-height: 1.4;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-secondary);
+    font-weight: 500;
+  }
+
+  span {
+    color: var(--color-text-light);
+
+    &:last-child {
+      color: var(--color-text);
+    }
+  }
+
+  img {
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+}
+
+/* DETAILPAGINA — mobiel first */
 
 .main-image {
   position: relative;
@@ -190,7 +246,69 @@ main,
   }
 }
 
+/* Media thumbnails */
+
+.media-thumbnails {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 1.25rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.media-thumb {
+  position: relative;
+  flex: 0 0 136px;
+  width: 136px;
+  color: #0071ce;
+  text-align: center;
+  font-size: 1rem;
+  text-decoration: none;
+
+  img {
+    width: 136px;
+    height: 92px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #e5e5e5;
+  }
+
+  p {
+    margin-top: 0.5rem;
+    color: #0071ce;
+  }
+
+  /* Icoon via pseudo-element */
+  &::after {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    color: white;
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Verberg eventuele losse spans als die nog in de HTML staan */
+  > span {
+    display: none;
+  }
+}
+
+.media-thumb-floorplan::after {
+  content: "↗";
+}
+
+.media-thumb-video::after {
+  content: "▶";
+}
+
 .media-options {
+  display: none;
   margin-inline: 1rem;
   padding: 1rem 0;
   border-bottom: 1px solid var(--color-border);
@@ -491,14 +609,23 @@ main,
 /* BROKER CARD */
 
 .broker-card {
+  position: relative;
   overflow: hidden;
   background: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-medium);
 
-  .broker-card-top {
+  /* Decoratieve bovenkant via pseudo-element (vervangt .broker-card-top div) */
+  &::before {
+    content: "";
+    display: block;
     height: 4rem;
     background: #e5f6ff;
+  }
+
+  /* Verberg eventuele losse .broker-card-top divs als die nog in de HTML staan */
+  .broker-card-top {
+    display: none;
   }
 
   .broker-card-content {
@@ -528,6 +655,17 @@ main,
       gap: 0.75rem;
       color: var(--color-secondary);
       font-size: 1.1rem;
+
+      &::before {
+        content: "📞";
+      }
+
+      img {
+        width: 1.15rem;
+        height: 1.15rem;
+        object-fit: contain;
+        flex-shrink: 0;
+      }
     }
   }
 
@@ -546,17 +684,32 @@ main,
       border-radius: var(--radius-small);
       font-size: 1.1rem;
       font-weight: var(--font-weight-bold);
+
+      img {
+        width: 1.15rem;
+        height: 1.15rem;
+        object-fit: contain;
+        flex-shrink: 0;
+      }
     }
 
     .broker-contact-button {
       color: var(--color-white);
       background: #ff9f1c;
+
+      &::before {
+        content: "✉";
+      }
     }
 
     .broker-viewing-button {
       margin-top: 1rem;
       color: var(--color-secondary);
       background: var(--color-white);
+
+      &::before {
+        content: "📅";
+      }
     }
   }
 
@@ -567,13 +720,132 @@ main,
     padding: 1.25rem 1.75rem;
     color: var(--color-secondary);
     font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .broker-download-icon {
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+    object-fit: contain;
+    flex-shrink: 0;
   }
 }
 
-/* OVERZICHTSPAGINA */
+/* FAVORIETEN KNOP (detail­pagina) */
+
+.favorite-button {
+  &.loading {
+    opacity: 0.85;
+    cursor: wait;
+
+    .favorite-heart {
+      display: inline-block;
+      animation: favorite-spin 0.8s linear infinite;
+    }
+  }
+
+  &.is-favorite {
+    color: #d93025;
+
+    .favorite-heart {
+      color: #d93025;
+    }
+  }
+
+  &.success {
+    box-shadow: 0 0 0 3px rgba(217, 48, 37, 0.15);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+@keyframes favorite-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* SUCCESS TOAST */
+
+.success-toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  width: 360px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 18px 18px 22px;
+  opacity: 0;
+  transform: translateX(120%);
+  transition: all 0.35s ease;
+  z-index: 9999;
+  overflow: hidden;
+  pointer-events: none;
+
+  &.show {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+}
+
+.success-toast-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: #198754;
+}
+
+.success-toast-icon {
+  min-width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #198754;
+  color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.success-toast-content {
+  strong {
+    display: block;
+    font-size: 16px;
+    color: #111827;
+    margin-bottom: 5px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.4;
+  }
+}
+
+.success-toast-close {
+  margin-left: auto;
+  background: none;
+  border: 0;
+  font-size: 22px;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+/* OVERZICHTSPAGINA  mobiel first */
 
 .houses-page {
   width: min(100%, 1180px);
+  max-width: 1200px;
   margin-inline: auto;
   padding: 2rem 1rem;
 
@@ -582,65 +854,157 @@ main,
     font-size: 2rem;
     font-weight: var(--font-weight-bold);
   }
+}
 
-  .houses-grid,
-  .houses-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+.houses-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.houses-sort-form {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  label {
+    font-weight: 600;
   }
 
-  .house-card {
-    display: block;
-    overflow: hidden;
-    color: inherit;
-    background: var(--color-white);
-    border-radius: var(--radius-large);
-    box-shadow: var(--shadow-medium);
-    text-decoration: none;
-    transition: 0.2s ease;
+  select,
+  button {
+    min-height: 2.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid #d1d5db;
+    padding: 0 1rem;
+    font: inherit;
+  }
+
+  select {
+    background: white;
+    cursor: pointer;
+  }
+
+  button {
+    border: none;
+    background: #111827;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
 
     &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
-    }
-
-    img {
-      width: 100%;
-      height: 230px;
-      object-fit: cover;
-    }
-
-    .house-card-content {
-      padding: 1rem;
-
-      h2 {
-        margin-bottom: 0.25rem;
-        color: var(--color-text);
-        font-size: 1.25rem;
-        font-weight: var(--font-weight-bold);
-      }
-
-      p {
-        color: var(--color-text);
-      }
-
-      strong,
-      .house-price {
-        display: block;
-        margin-top: 0.25rem;
-        font-weight: var(--font-weight-bold);
-      }
-
-      .house-meta,
-      .house-features {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin-top: 0.5rem;
-      }
+      background: #374151;
     }
   }
+}
+
+.houses-grid,
+.houses-list,
+.houses-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+/* HOUSE CARD */
+
+.house-card {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: white;
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  > a {
+    display: block;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .house-card-image,
+  > a > img,
+  img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .house-card-content {
+    padding: 1rem;
+
+    h2,
+    h3 {
+      margin: 0 0 0.5rem;
+      color: var(--color-text);
+      font-size: 1.25rem;
+      font-weight: var(--font-weight-bold);
+    }
+
+    p {
+      margin: 0 0 0.75rem;
+      color: var(--color-text);
+    }
+
+    strong,
+    .house-price {
+      display: block;
+      margin: 0.25rem 0 1rem;
+      font-size: 1.1rem;
+      font-weight: var(--font-weight-bold);
+    }
+  }
+}
+
+.house-features,
+.house-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.house-feature,
+.house-features div {
+  display: flex;
+  flex-direction: column;
+}
+
+.house-features dt,
+.house-feature dt {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.house-features dd,
+.house-feature dd {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.house-feature-area dd::before {
+  content: "🏠 ";
+}
+
+.house-feature-rooms dd::before {
+  content: "🚪 ";
 }
 
 /* FAVORIETENPAGINA */
@@ -658,6 +1022,14 @@ main,
   .breadcrumb {
     margin-bottom: 1rem;
     color: var(--color-text);
+
+    .icon {
+      width: 18px !important;
+      height: 18px !important;
+      min-width: 18px !important;
+      max-width: 18px !important;
+      object-fit: contain !important;
+    }
   }
 
   h1 {
@@ -666,6 +1038,7 @@ main,
     font-weight: var(--font-weight-bold);
   }
 
+  /* Decoratieve lijn onder de paginatitel */
   .page-title::after {
     content: "";
     display: block;
@@ -677,60 +1050,55 @@ main,
     border-radius: 999px;
   }
 
-  .houses-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  /* Verberg eventuele losse .title-line divs als die nog in de HTML staan */
+  .title-line {
+    display: none;
   }
 
   .house-card {
-    display: block;
-    overflow: hidden;
-    color: inherit;
-    background: var(--color-white);
-    border-radius: var(--radius-large);
     box-shadow: var(--shadow-small);
-    text-decoration: none;
-    transition: 0.2s ease;
 
     &:hover {
       transform: translateY(-3px);
       box-shadow: var(--shadow-medium);
     }
 
-    img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-
     .house-card-content {
-      padding: 1rem;
-
       h2 {
         margin-bottom: 0.25rem;
         color: var(--color-secondary);
         font-size: 1.35rem;
-        font-weight: var(--font-weight-bold);
       }
 
       p {
         margin-bottom: 0.25rem;
-        color: var(--color-text);
       }
 
       strong {
-        display: block;
         margin: 0.75rem 0;
         font-size: 1.2rem;
-        font-weight: var(--font-weight-bold);
       }
+    }
+  }
 
-      .house-features {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
+  .house-features {
+    align-items: center;
+
+    span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--color-text);
+      font-size: 0.95rem;
+    }
+
+    .icon {
+      width: 18px !important;
+      height: 18px !important;
+      min-width: 18px !important;
+      max-width: 18px !important;
+      object-fit: contain !important;
+      flex-shrink: 0;
     }
   }
 
@@ -752,7 +1120,7 @@ main,
       display: block;
       width: 4.5rem;
       height: 4.5rem;
-      margin-bottom: 1.5rem;
+      margin: 0 auto 1.5rem;
       object-fit: contain;
     }
 
@@ -846,57 +1214,129 @@ main,
   }
 }
 
-/* EXTRA SMALL MOBILE */
+/* SCROLL-DRIVEN ANIMATIES progressive enhancement */
 
-@media (max-width: 320px) {
-  .main-header {
-    .main-nav {
-      .main-nav-list {
-        a,
-        .menu-button {
-          font-size: 0.75rem;
-          padding: 0.4rem 0.15rem;
+@supports (animation-timeline: view()) {
+  .description,
+  .features,
+  .popularity,
+  .neighborhood {
+    animation-name: fade-in-up;
+    animation-duration: 1ms;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
 
-          img,
-          svg {
-            width: 1.35rem;
-            height: 1.35rem;
-          }
-        }
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
 
-        .funda-logo {
-          width: 48px;
-          min-width: 48px;
-        }
-      }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
-  .main-image {
-    .gallery-actions {
-      gap: 0.5rem;
-
-      .share-button,
-      .favorite-button {
-        padding: 0.65rem 0.75rem;
-        font-size: 0.8rem;
-      }
-    }
+  .house-card {
+    animation-name: card-fade-in;
+    animation-duration: 1ms;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 25%;
   }
 
-  .media-options {
-    a {
-      font-size: 0.85rem;
+  @keyframes card-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
 
-      img {
-        width: 1rem;
-        height: 1rem;
-      }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }
 
-/* TABLET */
+@media (prefers-reduced-motion: reduce) {
+  .description,
+  .features,
+  .popularity,
+  .neighborhood,
+  .house-card {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* VIEW TRANSITIONS */
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.25s;
+  animation-timing-function: ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
+
+ /* MOBILE */
+
+@media (max-width: 320px) {
+  .main-header .main-nav .main-nav-list {
+    a,
+    .menu-button {
+      font-size: 0.75rem;
+      padding: 0.4rem 0.15rem;
+
+      img,
+      svg {
+        width: 1.35rem;
+        height: 1.35rem;
+      }
+    }
+
+    .funda-logo {
+      width: 48px;
+      min-width: 48px;
+    }
+  }
+
+  .main-image .gallery-actions {
+    gap: 0.5rem;
+
+    .share-button,
+    .favorite-button {
+      padding: 0.65rem 0.75rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  .media-options a {
+    font-size: 0.85rem;
+
+    img {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+}
+
+   /* TABLET */
 
 @media (min-width: 600px) {
   .main-image {
@@ -927,12 +1367,8 @@ main,
     }
   }
 
-  .features {
-    section {
-      dl {
-        grid-template-columns: 40% 60%;
-      }
-    }
+  .features section dl {
+    grid-template-columns: 40% 60%;
   }
 
   .popularity {
@@ -950,91 +1386,177 @@ main,
     }
   }
 
-  .neighborhood {
-    dl {
-      grid-template-columns: 1fr 1fr;
+  .neighborhood dl {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .breadcrumb {
+    margin: 1.25rem auto 1rem;
+
+    img {
+      width: 1.35rem !important;
+      height: 1.35rem !important;
     }
   }
 
-  .houses-page,
-  .favorites-page {
-    .houses-grid,
-    .houses-list {
-      grid-template-columns: repeat(2, 1fr);
+  .houses-grid,
+  .houses-list,
+  .houses-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .houses-hero {
+    &.has-narrow-layout {
+      align-items: stretch;
+      flex-direction: column;
     }
   }
 
-  .footer {
-    .footer-links {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
+  .houses-sort-form {
+    &.has-narrow-layout {
+      align-items: stretch;
+      flex-direction: column;
     }
+  }
+
+  .footer .footer-links {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .houses-hero {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .houses-sort-form {
+    align-items: stretch;
+    flex-direction: column;
   }
 }
 
 /* DESKTOP */
 
 @media (min-width: 900px) {
-  .main-header {
-    .main-nav {
-      width: min(100%, 1180px);
-      margin-inline: auto;
-      padding-inline: 1rem;
+  /* Header */
+  .main-header .main-nav {
+    width: min(100%, 1180px);
+    margin-inline: auto;
+    padding-inline: 1rem;
 
-      .main-nav-list {
+    .main-nav-list {
+      display: flex !important;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1.5rem;
+      min-height: 64px;
+      list-style: none;
+
+      li {
         display: flex;
-        justify-content: flex-start;
-        gap: 0.5rem;
-        min-height: 64px;
+        align-items: center;
+        flex-shrink: 0;
+      }
 
-        .menu-list-item {
-          display: none;
-        }
+      .logo-item {
+        margin-right: 1.75rem;
 
-        .secondary-nav-item {
-          display: list-item;
-        }
-
-        li:nth-last-child(3) {
-          margin-left: auto;
-        }
-
-        a,
-        .menu-button {
-          flex-direction: row;
-          width: auto;
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           min-height: 64px;
-          gap: 0.5rem;
-          padding: 0.875rem 1rem;
-          font-size: 1rem;
-          white-space: nowrap;
+          width: auto;
+          padding: 0;
+        }
+      }
 
-          img,
-          svg {
-            width: 1.35rem;
-            height: 1.35rem;
-            margin-bottom: 0;
-          }
+      .funda-logo {
+        display: block;
+        width: 120px !important;
+        min-width: 120px !important;
+        max-width: none !important;
+        height: auto !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        object-fit: contain;
+      }
+
+      a:not(.logo-item a),
+      .menu-button {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: auto;
+        min-height: 64px;
+        padding: 0;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1;
+        white-space: nowrap;
+
+        &:hover {
+          background: transparent;
         }
 
-        .funda-logo {
-          width: 110px;
-          min-width: 110px;
-          margin-right: 0.5rem;
+        img,
+        svg {
+          width: 1.45rem !important;
+          height: 1.45rem !important;
+          margin: 0 !important;
+          object-fit: contain;
         }
+      }
 
-        .account-link,
-        .login-link {
-          img,
-          svg {
-            width: 2rem;
-            height: 2rem;
-          }
+      .account-link,
+      .login-link {
+        img,
+        svg {
+          width: 2rem;
+          height: 2rem;
         }
+      }
+
+      .menu-list-item {
+        display: none;
+      }
+
+      .secondary-nav-item {
+        display: list-item;
+      }
+
+      li:nth-last-child(3) {
+        margin-left: auto;
       }
     }
   }
 
+  .menu-button::before,
+  .home-link::before,
+  .favorites-link::before {
+    display: inline-block;
+    margin-right: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    margin: 1.5rem auto 1rem;
+    padding-inline: 0;
+    font-size: 1.05rem;
+
+    img {
+      width: 1.35rem !important;
+      height: 1.35rem !important;
+    }
+  }
+
+  /* Detailpagina */
   .main-image {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
@@ -1063,7 +1585,12 @@ main,
     }
   }
 
+  .media-thumbnails {
+    display: none;
+  }
+
   .media-options {
+    display: block;
     overflow-x: visible;
 
     ul {
@@ -1110,25 +1637,23 @@ main,
     max-width: 760px;
   }
 
-  .houses-page {
-    .houses-grid,
-    .houses-list {
-      grid-template-columns: repeat(3, 1fr);
-    }
+  /* Overzichtspagina */
+  .houses-grid,
+  .houses-list,
+  .houses-section {
+    grid-template-columns: repeat(3, 1fr);
   }
 
+  /* Favorietenpagina */
   .favorites-page {
     padding-top: 4rem;
 
     h1 {
       font-size: 2.75rem;
     }
-
-    .houses-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
   }
 
+  /* Footer */
   .footer {
     .footer-links {
       grid-template-columns: repeat(4, 1fr);
@@ -1143,1028 +1668,5 @@ main,
       justify-content: space-between;
       gap: 2rem;
     }
-  }
-}
-.success-toast {
-  position: fixed;
-  top: 24px;
-  right: 24px;
-  width: 360px;
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16);
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 18px 18px 18px 22px;
-  opacity: 0;
-  transform: translateX(120%);
-  transition: all 0.35s ease;
-  z-index: 9999;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.success-toast.show {
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: auto;
-}
-
-.success-toast-bar {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 6px;
-  height: 100%;
-  background: #198754;
-}
-
-.success-toast-icon {
-  min-width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #198754;
-  color: white;
-  display: grid;
-  place-items: center;
-  font-weight: 700;
-}
-
-.success-toast-content strong {
-  display: block;
-  font-size: 16px;
-  color: #111827;
-  margin-bottom: 5px;
-}
-
-.success-toast-content p {
-  margin: 0;
-  font-size: 14px;
-  color: #6b7280;
-  line-height: 1.4;
-}
-
-.success-toast-close {
-  margin-left: auto;
-  background: none;
-  border: 0;
-  font-size: 22px;
-  color: #9ca3af;
-  cursor: pointer;
-}
-
-/* --------------------------------------------------
-   FIXES: breadcrumb + brochure icon
-   Deze regels staan onderaan zodat ze eerdere styling overrulen.
--------------------------------------------------- */
-
-/* Breadcrumb mobile first */
-.breadcrumb {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  width: min(100% - 2rem, 1180px);
-  margin: 1rem auto;
-  font-size: 1rem;
-  line-height: 1.4;
-}
-
-.breadcrumb a {
-  display: inline-flex;
-  align-items: center;
-  color: var(--color-secondary);
-  font-weight: 500;
-}
-
-.breadcrumb span {
-  color: var(--color-text-light);
-}
-
-.breadcrumb span:last-child {
-  color: var(--color-text);
-}
-
-.breadcrumb img {
-  width: 1.25rem;
-  height: 1.25rem;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-/* Broker download */
-.broker-card .broker-download {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1.25rem 1.75rem;
-  color: var(--color-secondary);
-  font-size: 1.1rem;
-}
-
-.broker-card .broker-download-icon {
-  width: 1.25rem;
-  height: 1.25rem;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-/* Kleine iconen binnen broker-card knoppen */
-.broker-card-actions img,
-.broker-phone img {
-  width: 1.15rem;
-  height: 1.15rem;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-/* Tablet */
-@media (min-width: 600px) {
-  .breadcrumb {
-    margin: 1.25rem auto 1rem;
-  }
-
-  .breadcrumb img {
-    width: 1.35rem;
-    height: 1.35rem;
-  }
-}
-
-/* Desktop */
-@media (min-width: 900px) {
-  .breadcrumb {
-    margin: 1.5rem auto 1rem;
-    padding-inline: 0;
-    font-size: 1.05rem;
-  }
-
-  .breadcrumb img {
-    width: 1.45rem;
-    height: 1.45rem;
-  }
-
-  .broker-card .broker-download-icon {
-    width: 1.15rem;
-    height: 1.15rem;
-  }
-}
-
-/* ==================================================
-   DEFINITIEVE HEADER + LOGO FIX
-   Zet dit onderaan zodat eerdere regels niet winnen.
-================================================== */
-
-/* Header desktop */
-@media (min-width: 900px) {
-  .main-header {
-    background: #ff9f1c;
-  }
-
-  .main-header .main-nav {
-    width: min(100%, 1180px);
-    margin-inline: auto;
-    padding-inline: 1rem;
-  }
-
-  .main-header .main-nav-list {
-    display: flex !important;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 1.5rem;
-    min-height: 64px;
-    list-style: none;
-  }
-
-  .main-header .main-nav-list li {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-  }
-
-  .main-header .main-nav-list .logo-item {
-    margin-right: 1.75rem;
-  }
-
-  .main-header .main-nav-list .logo-item a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 64px;
-    width: auto;
-    padding: 0;
-  }
-
-  .main-header .main-nav-list .funda-logo {
-    display: block;
-    width: 120px !important;
-    min-width: 120px !important;
-    max-width: none !important;
-    height: auto !important;
-    min-height: 0 !important;
-    margin: 0 !important;
-    object-fit: contain;
-  }
-
-  .main-header .main-nav-list a:not(.logo-item a),
-  .main-header .main-nav-list .menu-button {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    width: auto;
-    min-height: 64px;
-    padding: 0;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1;
-    white-space: nowrap;
-  }
-
-  .main-header .main-nav-list a:not(.logo-item a):hover,
-  .main-header .main-nav-list .menu-button:hover {
-    background: transparent;
-  }
-
-  .main-header .main-nav-list a:not(.logo-item a) img,
-  .main-header .main-nav-list a:not(.logo-item a) svg,
-  .main-header .main-nav-list .menu-button img,
-  .main-header .main-nav-list .menu-button svg {
-    width: 1.45rem !important;
-    height: 1.45rem !important;
-    margin: 0 !important;
-    object-fit: contain;
-  }
-
-  .main-header .main-nav-list li:nth-last-child(3) {
-    margin-left: auto;
-  }
-}
-
-/* Header mobiel */
-@media (max-width: 899px) {
-  .main-header .main-nav {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-  .main-header .main-nav-list {
-    display: grid !important;
-    grid-template-columns: repeat(5, 1fr);
-    align-items: center;
-    min-height: 84px;
-    list-style: none;
-  }
-
-  .main-header .main-nav-list li {
-    min-width: 0;
-  }
-
-  .main-header .main-nav-list a,
-  .main-header .main-nav-list .menu-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.25rem;
-    width: 100%;
-    min-height: 84px;
-    padding: 0.45rem 0.25rem;
-    color: #fff;
-    font-size: 0.9rem;
-    font-weight: 600;
-    line-height: 1.15;
-    text-align: center;
-  }
-
-  .main-header .main-nav-list .logo-item a {
-    padding: 0;
-  }
-
-  .main-header .main-nav-list .funda-logo {
-    width: 72px !important;
-    min-width: 72px !important;
-    max-width: none !important;
-    height: auto !important;
-    margin: 0 !important;
-    object-fit: contain;
-  }
-
-  .main-header .main-nav-list a:not(.logo-item a) img,
-  .main-header .main-nav-list a:not(.logo-item a) svg,
-  .main-header .main-nav-list .menu-button img,
-  .main-header .main-nav-list .menu-button svg {
-    width: 1.5rem !important;
-    height: 1.5rem !important;
-    margin-bottom: 0.25rem;
-    object-fit: contain;
-  }
-}
-
-/* Breadcrumb: huisje klein */
-.breadcrumb {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  width: min(100% - 2rem, 1180px);
-  margin: 1rem auto;
-  font-size: 1rem;
-  line-height: 1.4;
-}
-
-.breadcrumb a {
-  display: inline-flex;
-  align-items: center;
-  color: var(--color-secondary);
-  font-weight: 500;
-}
-
-.breadcrumb span {
-  color: var(--color-text-light);
-}
-
-.breadcrumb span:last-child {
-  color: var(--color-text);
-}
-
-.breadcrumb img {
-  width: 1.2rem !important;
-  height: 1.2rem !important;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-@media (min-width: 900px) {
-  .breadcrumb {
-    margin: 1.5rem auto 1rem;
-    font-size: 1.05rem;
-  }
-
-  .breadcrumb img {
-    width: 1.35rem !important;
-    height: 1.35rem !important;
-  }
-}
-
-/* Broker download: brochure-icon klein */
-.broker-card .broker-download {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1.25rem 1.75rem;
-  color: var(--color-secondary);
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.broker-card .broker-download-icon {
-  width: 1.2rem !important;
-  height: 1.2rem !important;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-/* FAVORIETEN FIX */
-
-.favorite-button.loading {
-  opacity: 0.85;
-  cursor: wait;
-}
-
-.favorite-button.loading .favorite-heart {
-  display: inline-block;
-  animation: favorite-spin 0.8s linear infinite;
-}
-
-.favorite-button.is-favorite {
-  color: #d93025;
-}
-
-.favorite-button.is-favorite .favorite-heart {
-  color: #d93025;
-}
-
-.favorite-button.success {
-  box-shadow: 0 0 0 3px rgba(217, 48, 37, 0.15);
-}
-
-.favorite-button:disabled {
-  cursor: not-allowed;
-  transform: none;
-}
-
-@keyframes favorite-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-.houses-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-}
-
-.houses-hero {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.houses-sort-form {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.houses-sort-form label {
-    font-weight: 600;
-}
-
-.houses-sort-form select,
-.houses-sort-form button {
-    min-height: 2.75rem;
-    border-radius: 0.75rem;
-    border: 1px solid #d1d5db;
-    padding: 0 1rem;
-    font: inherit;
-}
-
-.houses-sort-form select {
-    background: white;
-    cursor: pointer;
-}
-
-.houses-sort-form button {
-    border: none;
-    background: #111827;
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.houses-sort-form button:hover {
-    background: #374151;
-}
-
-.houses-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-    padding: 0;
-    margin: 0;
-}
-
-.house-card {
-    display: block;
-    height: 100%;
-    overflow: hidden;
-    border-radius: 1rem;
-    background: white;
-    color: inherit;
-    text-decoration: none;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-.house-card:hover {
-    transform: translateY(-4px);
-}
-
-.house-card-image {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
-}
-
-.house-card-content {
-    padding: 1rem;
-}
-
-.house-card-content h3 {
-    margin: 0 0 0.5rem;
-}
-
-.house-card-content p {
-    margin: 0 0 0.75rem;
-    color: #4b5563;
-}
-
-.house-card-content strong {
-    display: block;
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-}
-
-.house-features {
-    display: flex;
-    gap: 1rem;
-    margin: 0;
-}
-
-.house-features div {
-    display: flex;
-    flex-direction: column;
-}
-
-.house-features dt {
-    font-size: 0.75rem;
-    color: #6b7280;
-}
-
-.house-features dd {
-    margin: 0;
-    font-weight: 600;
-}
-
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-}
-
-@media (max-width: 700px) {
-    .houses-hero {
-        align-items: stretch;
-        flex-direction: column;
-    }
-
-    .houses-sort-form {
-        align-items: stretch;
-        flex-direction: column;
-    }
-}
-
-
-
-/* ==================================================
-   MEDIA DETAILPAGINA
-   Mobiel: thumbnail blokjes
-   Desktop: originele media balk
-================================================== */
-
-.media-thumbnails {
-  display: flex;
-  gap: 1rem;
-  margin: 1rem 1.25rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-}
-
-.media-thumb {
-  position: relative;
-  flex: 0 0 136px;
-  width: 136px;
-  color: #0071ce;
-  text-align: center;
-  font-size: 1rem;
-  text-decoration: none;
-}
-
-.media-thumb img {
-  width: 136px;
-  height: 92px;
-  object-fit: cover;
-  border-radius: 4px;
-  background: #e5e5e5;
-}
-
-.media-thumb span {
-  position: absolute;
-  top: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  color: white;
-  background: rgba(0, 0, 0, 0.45);
-  border-radius: 50%;
-  font-size: 1.1rem;
-}
-
-.media-thumb p {
-  margin-top: 0.5rem;
-  color: #0071ce;
-}
-
-.media-options {
-  display: none;
-}
-
-@media (min-width: 900px) {
-  .media-thumbnails {
-    display: none;
-  }
-
-  .media-options {
-    display: block;
-  }
-}
-
-/* ==================================================
-   FAVORIETEN ICONEN FIX
-   Maakt bed-icoon en m2-icoon klein in de favoriete huizen kaart
-================================================== */
-
-.favorites-page .house-features {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.favorites-page .house-features span {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: var(--color-text);
-  font-size: 0.95rem;
-}
-
-.favorites-page .house-features .icon {
-  width: 18px !important;
-  height: 18px !important;
-  min-width: 18px !important;
-  max-width: 18px !important;
-  object-fit: contain !important;
-  flex-shrink: 0;
-}
-
-.favorites-page .breadcrumb .icon {
-  width: 18px !important;
-  height: 18px !important;
-  min-width: 18px !important;
-  max-width: 18px !important;
-  object-fit: contain !important;
-}
-/* Krijn feedback fixes */
-
-/* Vervangt de loze .title-line div */
-.page-title::after {
-  content: "";
-  display: block;
-  width: 55px;
-  height: 4px;
-  margin-top: 1.5rem;
-  margin-bottom: 2rem;
-  background: var(--color-primary);
-  border-radius: 999px;
-}
-
-/* Als .title-line nog per ongeluk in HTML staat */
-.title-line {
-  display: none;
-}
-
-/* Article woningkaarten */
-.houses-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  padding: 0;
-  margin: 0;
-}
-
-.house-card {
-  display: block;
-  height: 100%;
-  overflow: hidden;
-  border-radius: 1rem;
-  background: white;
-  color: inherit;
-  text-decoration: none;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-.house-card > a {
-  display: block;
-  height: 100%;
-  color: inherit;
-  text-decoration: none;
-}
-
-.house-card-image,
-.house-card > a > img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
-/* Empty state: als img direct class empty-icon heeft */
-.empty-state > .empty-icon {
-  width: 4.5rem;
-  height: 4.5rem;
-  margin: 0 auto 1.5rem;
-  object-fit: contain;
-}
-
-/* House features als dl */
-.house-features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 0.75rem;
-}
-
-.house-features div {
-  display: flex;
-  flex-direction: column;
-}
-
-.house-features dt {
-  font-size: 0.75rem;
-  color: #6b7280;
-}
-
-.house-features dd {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin: 0;
-  font-weight: 600;
-}
-
-/* Iconen via CSS i.p.v. emoji in HTML */
-.house-feature-area dd::before {
-  content: "🏠";
-}
-
-.house-feature-rooms dd::before {
-  content: "🚪";
-}
-
-/* Media thumbnail iconen via CSS i.p.v. spans */
-.media-thumb {
-  position: relative;
-}
-
-.media-thumb::after {
-  position: absolute;
-  top: 25px;
-  left: 50%;
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  color: white;
-  background: rgba(0, 0, 0, 0.45);
-  border-radius: 50%;
-  transform: translateX(-50%);
-}
-
-.media-thumb-floorplan::after {
-  content: "↗";
-}
-
-.media-thumb-video::after {
-  content: "▶";
-}
-
-/* Als oude spans nog bestaan: verbergen */
-.media-thumb > span {
-  display: none;
-}
-
-/* Broker decoratieve bovenkant zonder loze div */
-.broker-card {
-  position: relative;
-}
-
-.broker-card::before {
-  content: "";
-  display: block;
-  height: 4rem;
-  background: #e5f6ff;
-}
-
-.broker-card-top {
-  display: none;
-}
-
-/* Broker emoji's via CSS */
-.broker-phone::before {
-  content: "📞";
-}
-
-.broker-contact-button::before {
-  content: "✉";
-}
-
-.broker-viewing-button::before {
-  content: "📅";
-}
-.houses-section {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.house-card {
-  overflow: hidden;
-  border-radius: 1rem;
-  background: white;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-.house-card > a {
-  display: block;
-  height: 100%;
-  color: inherit;
-  text-decoration: none;
-}
-
-.house-card:hover {
-  transform: translateY(-4px);
-}
-
-.house-card-image {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  display: block;
-}
-
-.house-card-content {
-  padding: 1rem;
-}
-
-.house-card-content h2 {
-  margin: 0 0 0.5rem;
-  font-size: 1.25rem;
-}
-
-.house-card-content p {
-  margin: 0 0 0.75rem;
-  color: #4b5563;
-}
-
-.house-card-content strong {
-  display: block;
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
-}
-
-.house-features {
-  display: flex;
-  gap: 1rem;
-  margin: 0;
-}
-
-.house-feature {
-  display: flex;
-  flex-direction: column;
-}
-
-.house-feature dt {
-  font-size: 0.75rem;
-  color: #6b7280;
-}
-
-.house-feature dd {
-  margin: 0;
-  font-weight: 600;
-}
-
-.house-feature-area dd::before {
-  content: "🏠 ";
-}
-
-.house-feature-rooms dd::before {
-  content: "🚪 ";
-}
-
-@media (max-width: 899px) {
-  .houses-section {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 599px) {
-  .houses-section {
-    grid-template-columns: 1fr;
-  }
-}
-.menu-button::before {
-  content: "☰";
-}
-
-.home-link::before {
-  content: "⌂";
-}
-
-.favorites-link::before {
-  content: "♡";
-}
-
-.menu-button::before,
-.home-link::before,
-.favorites-link::before {
-  display: block;
-  font-size: 1.4rem;
-  line-height: 1;
-  margin-bottom: 0.25rem;
-}
-
-@media (min-width: 900px) {
-  .menu-button::before,
-  .home-link::before,
-  .favorites-link::before {
-    display: inline-block;
-    margin-right: 0.5rem;
-    margin-bottom: 0;
-  }
-}
-/* Scroll-driven animation: progressive enhancement */
-@supports (animation-timeline: view()) {
-  .description,
-  .features,
-  .popularity,
-  .neighborhood {
-    animation-name: fade-in-up;
-    animation-duration: 1ms;
-    animation-fill-mode: both;
-    animation-timing-function: linear;
-    animation-timeline: view();
-    animation-range: entry 0% cover 30%;
-  }
-
-  @keyframes fade-in-up {
-    from {
-      opacity: 0;
-      transform: translateY(1.5rem);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
-
-/* Respecteert gebruikers die animaties uit hebben staan */
-@media (prefers-reduced-motion: reduce) {
-  .description,
-  .features,
-  .popularity,
-  .neighborhood {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-}
-@supports (animation-timeline: view()) {
-  .house-card {
-    animation-name: card-fade-in;
-    animation-duration: 1ms;
-    animation-fill-mode: both;
-    animation-timing-function: linear;
-    animation-timeline: view();
-    animation-range: entry 0% cover 25%;
-  }
-
-  @keyframes card-fade-in {
-    from {
-      opacity: 0;
-      transform: translateY(1rem);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .house-card {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-}
-/* View transitions: progressive enhancement */
-@view-transition {
-  navigation: auto;
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.25s;
-  animation-timing-function: ease;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation: none;
   }
 }
