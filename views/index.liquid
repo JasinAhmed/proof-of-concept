@@ -10,9 +10,11 @@
 
             <select name="sort" id="sort">
                 <option value="">Standaard</option>
+
                 <option value="laag-hoog" {% if sort == 'laag-hoog' %}selected{% endif %}>
                     Prijs laag naar hoog
                 </option>
+
                 <option value="hoog-laag" {% if sort == 'hoog-laag' %}selected{% endif %}>
                     Prijs hoog naar laag
                 </option>
@@ -22,7 +24,7 @@
         </form>
     </section>
 
-    <section class="houses-section">
+    <div class="houses-section">
         {% for house in houses %}
             <article class="house-card">
                 <a href="/huis-detail/{{ house.id }}">
@@ -47,7 +49,9 @@
                             {{ house.city }}
                         </p>
 
-                        <strong>€ {{ house.priceFormatted }} k.k.</strong>
+                        <strong>
+                            € {{ house.priceFormatted }} k.k.
+                        </strong>
 
                         <dl class="house-features">
                             <div class="house-feature house-feature-area">
@@ -64,7 +68,7 @@
                 </a>
             </article>
         {% endfor %}
-    </section>
+    </div>
 </main>
 
 {% render 'partials/footer.liquid' %}
