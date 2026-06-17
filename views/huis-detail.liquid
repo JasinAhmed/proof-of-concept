@@ -21,7 +21,7 @@
     <span>{{ house.street }} {{ house.house_nr }}{{ house.nr_addition }}</span>
   </nav>
 
-  <section class="main-image">
+  <div class="main-image">
     <img
       class="primary-image"
       src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=1200"
@@ -60,9 +60,9 @@
         </button>
       </form>
     </div>
-  </section>
+  </div>
 
-  <section class="media-thumbnails">
+  <div class="media-thumbnails">
     <a href="#" class="media-thumb media-thumb-floorplan">
       <img
         src="/style/assets/floorplan@2x.svg"
@@ -83,7 +83,7 @@
       >
       <p>Video</p>
     </a>
-  </section>
+  </div>
 
   <nav class="media-options">
     <ul>
@@ -286,7 +286,7 @@
         <h2>Populariteit</h2>
 
         <div class="popularity-card">
-          <article class="popularity-item">
+          <div class="popularity-item">
             <img
               src="/style/assets/eye@2x.svg"
               alt=""
@@ -295,9 +295,9 @@
             >
             <strong>{{ house.views | default: "227.286x" }}</strong>
             <span>Bekeken</span>
-          </article>
+          </div>
 
-          <article class="popularity-item">
+          <div class="popularity-item">
             <img
               src="/style/assets/heart@2x.svg"
               alt=""
@@ -306,9 +306,9 @@
             >
             <strong>{{ house.saved_count | default: "1.900x" }}</strong>
             <span>Bewaard</span>
-          </article>
+          </div>
 
-          <article class="popularity-item">
+          <div class="popularity-item">
             <img
               src="/style/assets/calendar@2x.svg"
               alt=""
@@ -317,7 +317,7 @@
             >
             <strong>{{ house.listed_date | default: "Niet beschikbaar" }}</strong>
             <span>Op Funda</span>
-          </article>
+          </div>
         </div>
       </section>
 
@@ -405,7 +405,7 @@
 
   </div>
 
-  <section class="success-toast" id="successToast">
+  <div class="success-toast" id="successToast">
     <div class="success-toast-content">
       <strong>Woning opgeslagen</strong>
       <p>Deze woning is toegevoegd aan je favorieten.</p>
@@ -414,7 +414,7 @@
     <button type="button" class="success-toast-close">
       <span class="visually-hidden">Melding sluiten</span>
     </button>
-  </section>
+  </div>
 
 </main>
 
