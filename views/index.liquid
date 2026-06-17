@@ -3,12 +3,12 @@
 
 <main class="houses-page">
     <section class="houses-hero">
-        <h1 id="houses-title">Huizen te koop</h1>
+        <h1>Huizen te koop</h1>
 
         <form class="houses-sort-form" method="GET" action="/">
             <label for="sort">Sorteer op prijs</label>
 
-            <select name="sort" id="sort" onchange="this.form.submit()">
+            <select name="sort" id="sort">
                 <option value="">Standaard</option>
                 <option value="laag-hoog" {% if sort == 'laag-hoog' %}selected{% endif %}>
                     Prijs laag naar hoog
@@ -23,49 +23,47 @@
     </section>
 
     <section class="houses-section">
-        <ul class="houses-grid">
-            {% for house in houses %}
-                <li class="house-item">
-                    <a href="/huis-detail/{{ house.id }}" class="house-card">
-                        <img
-                            class="house-card-image"
-                            src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=600"
-                            alt="Foto van woning aan {{ house.street }} {{ house.house_nr }}"
-                            loading="lazy"
-                            width="600"
-                            height="400"
-                        >
+        {% for house in houses %}
+            <article class="house-card">
+                <a href="/huis-detail/{{ house.id }}">
+                    <img
+                        class="house-card-image"
+                        src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=600"
+                        alt=""
+                        loading="lazy"
+                        width="600"
+                        height="400"
+                    >
 
-                        <div class="house-card-content">
-                            <h3>
-                                {{ house.street }}
-                                {{ house.house_nr }}
-                                {{ house.nr_addition }}
-                            </h3>
+                    <div class="house-card-content">
+                        <h2>
+                            {{ house.street }}
+                            {{ house.house_nr }}
+                            {{ house.nr_addition }}
+                        </h2>
 
-                            <p>
-                                {{ house.postal_code }}
-                                {{ house.city }}
-                            </p>
+                        <p>
+                            {{ house.postal_code }}
+                            {{ house.city }}
+                        </p>
 
-                            <strong>€ {{ house.priceFormatted }} k.k.</strong>
+                        <strong>€ {{ house.priceFormatted }} k.k.</strong>
 
-                            <dl class="house-features">
-                                <div>
-                                    <dt>Oppervlakte</dt>
-                                    <dd>🏠 {{ house.m2 }} m²</dd>
-                                </div>
+                        <dl class="house-features">
+                            <div class="house-feature house-feature-area">
+                                <dt>Oppervlakte</dt>
+                                <dd>{{ house.m2 }} m²</dd>
+                            </div>
 
-                                <div>
-                                    <dt>Kamers</dt>
-                                    <dd>🚪 {{ house.rooms }} kamers</dd>
-                                </div>
-                            </dl>
-                        </div>
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
+                            <div class="house-feature house-feature-rooms">
+                                <dt>Kamers</dt>
+                                <dd>{{ house.rooms }} kamers</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </a>
+            </article>
+        {% endfor %}
     </section>
 </main>
 
