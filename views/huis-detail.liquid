@@ -19,15 +19,20 @@
   <div class="main-image">
     <img
       class="primary-image"
-      src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=1400"
+      src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=1200"
       alt="{{ house.street }}"
+      width="1200"
+      height="800"
     >
 
     {% for image in house.gallery limit:4 %}
       <img
         class="secondary-image"
-        src="https://fdnd-agency.directus.app/assets/{{ image.directus_files_id }}?width=900"
+        src="https://fdnd-agency.directus.app/assets/{{ image.directus_files_id }}?width=700"
         alt="Foto van {{ house.street }}"
+        loading="lazy"
+        width="700"
+        height="500"
       >
     {% endfor %}
 
@@ -55,8 +60,11 @@
 
     <a href="#" class="media-thumb">
       <img
-        src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=500"
+        src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=350"
         alt=""
+        loading="lazy"
+        width="350"
+        height="250"
       >
       <span>▶</span>
       <p>Video</p>
