@@ -1,23 +1,38 @@
 {% render 'partials/head.liquid' %}
 {% render 'partials/header.liquid' %}
 
-<section class="favorites-page">
+<main class="favorites-page">
     <div class="favorites-container">
 
         <nav class="breadcrumb">
-            <img src="/style/assets/house@2x.svg" alt="" class="icon">
-            / Mijn account / Favorieten
+            <a href="/">
+                <img
+                    src="/style/assets/house@2x.svg"
+                    alt=""
+                    class="icon"
+                    width="24"
+                    height="24"
+                >
+            </a>
+
+            <span>/</span>
+            <span>Mijn account</span>
+            <span>/</span>
+            <span>Favorieten</span>
         </nav>
 
-        <h1>{{ title }}</h1>
-        <div class="title-line"></div>
+        <h1 class="page-title">{{ title }}</h1>
 
         {% if houses.size == 0 %}
 
-            <div class="empty-state">
-                <div class="empty-icon">
-                    <img src="/style/assets/heart@2x.svg" alt="Favorieten leeg">
-                </div>
+            <section class="empty-state">
+                <img
+                    src="/style/assets/heart@2x.svg"
+                    alt=""
+                    class="empty-icon"
+                    width="72"
+                    height="72"
+                >
 
                 <h2>Tip: bewaar een huis</h2>
 
@@ -28,66 +43,77 @@
                 <a href="/" class="search-button">
                     Start met zoeken
                 </a>
-            </div>
+            </section>
 
         {% else %}
 
-            <div class="houses-grid">
-
+            <section class="houses-grid">
                 {% for house in houses %}
+                    <article class="house-card">
+                        <a href="/huis-detail/{{ house.id }}">
+                            <img
+                                class="house-card-image"
+                                src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=600"
+                                alt=""
+                                loading="lazy"
+                                width="600"
+                                height="400"
+                            >
 
-                    <a href="/huis-detail/{{ house.id }}" class="house-card">
+                            <div class="house-card-content">
+                                <h2>
+                                    {{ house.street }}
+                                    {{ house.house_nr }}
+                                    {{ house.nr_addition }}
+                                </h2>
 
-                        <img
-                            src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=600"
-                            alt="{{ house.street }} {{ house.house_nr }}"
-                            loading="lazy"
-                            width="600"
-                            height="400"
-                        >
+                                <p>
+                                    {{ house.postal_code }}
+                                    {{ house.city }}
+                                </p>
 
-                        <div class="house-card-content">
+                                <strong>
+                                    € {{ house.priceFormatted | default: house.price }}
+                                </strong>
 
-                            <h2>
-                                {{ house.street }}
-                                {{ house.house_nr }}
-                                {{ house.nr_addition }}
-                            </h2>
+                                <dl class="house-features">
+                                    <div>
+                                        <dt>Kamers</dt>
+                                        <dd>
+                                            <img
+                                                src="/style/assets/bed@2x.svg"
+                                                alt=""
+                                                class="icon"
+                                                width="18"
+                                                height="18"
+                                            >
+                                            {{ house.rooms }} kamers
+                                        </dd>
+                                    </div>
 
-                            <p>
-                                {{ house.postal_code }}
-                                {{ house.city }}
-                            </p>
-
-                            <strong>
-                                € {{ house.price }}
-                            </strong>
-
-                            <div class="house-features">
-
-                                <span>
-                                    <img src="/style/assets/bed@2x.svg" alt="" class="icon">
-                                    {{ house.rooms }} kamers
-                                </span>
-
-                                <span>
-                                    <img src="/style/assets/icons/area.svg" alt="" class="icon">
-                                    {{ house.m2 }} m²
-                                </span>
-
+                                    <div>
+                                        <dt>Oppervlakte</dt>
+                                        <dd>
+                                            <img
+                                                src="/style/assets/icons/area.svg"
+                                                alt=""
+                                                class="icon"
+                                                width="18"
+                                                height="18"
+                                            >
+                                            {{ house.m2 }} m²
+                                        </dd>
+                                    </div>
+                                </dl>
                             </div>
-
-                        </div>
-
-                    </a>
-
+                        </a>
+                    </article>
                 {% endfor %}
-
-            </div>
+            </section>
 
         {% endif %}
 
     </div>
-</section>
+</main>
 
 {% render 'partials/footer.liquid' %}
