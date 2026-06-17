@@ -5,7 +5,8 @@
     <div class="favorites-container">
 
         <nav class="breadcrumb">
-            🏠 / Mijn account / Favorieten
+            <img src="/style/assets/house@2x.svg" alt="" class="icon">
+            / Mijn account / Favorieten
         </nav>
 
         <h1>{{ title }}</h1>
@@ -14,7 +15,9 @@
         {% if houses.size == 0 %}
 
             <div class="empty-state">
-                <div class="empty-icon">🏠❤️</div>
+                <div class="empty-icon">
+                    <img src="/style/assets/heart@2x.svg" alt="Favorieten leeg">
+                </div>
 
                 <h2>Tip: bewaar een huis</h2>
 
@@ -60,11 +63,13 @@
                             <div class="house-features">
 
                                 <span>
-                                    🛏️ {{ house.rooms }} kamers
+                                    <img src="/style/assets/bed@2x.svg" alt="" class="icon">
+                                    {{ house.rooms }} kamers
                                 </span>
 
                                 <span>
-                                    📐 {{ house.m2 }} m²
+                                    <img src="/style/assets/icons/area.svg" alt="" class="icon">
+                                    {{ house.m2 }} m²
                                 </span>
 
                             </div>

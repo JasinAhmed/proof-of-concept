@@ -1777,3 +1777,40 @@ main,
     display: block;
   }
 }
+
+/* ==================================================
+   FAVORIETEN ICONEN FIX
+   Maakt bed-icoon en m2-icoon klein in de favoriete huizen kaart
+================================================== */
+
+.favorites-page .house-features {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.favorites-page .house-features span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-text);
+  font-size: 0.95rem;
+}
+
+.favorites-page .house-features .icon {
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  max-width: 18px !important;
+  object-fit: contain !important;
+  flex-shrink: 0;
+}
+
+.favorites-page .breadcrumb .icon {
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  max-width: 18px !important;
+  object-fit: contain !important;
+}
