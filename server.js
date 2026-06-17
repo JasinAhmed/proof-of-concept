@@ -11,6 +11,7 @@ const engine = new Liquid();
 app.engine('liquid', engine.express());
 app.set('views', './views');
 app.set('view engine', 'liquid');
+
 let favorieten = [];
 
 /* OVERZICHTSPAGINA */
@@ -31,12 +32,20 @@ app.get('/', async function (request, response) {
     const apiResponse = await fetch(url);
     const apiResponseJSON = await apiResponse.json();
 
+    const houses = apiResponseJSON.data.map(function (house) {
+        return {
+            ...house,
+            priceFormatted: Number(house.price).toLocaleString('nl-NL')
+        };
+    });
+
     response.render('index.liquid', {
         title: 'Huizen',
-        houses: apiResponseJSON.data,
+        houses: houses,
         sort: sort
     });
 });
+
 /* DETAILPAGINA */
 
 app.get('/huis-detail/:id', async function (request, response) {
@@ -48,9 +57,14 @@ app.get('/huis-detail/:id', async function (request, response) {
 
     const apiResponseJSON = await apiResponse.json();
 
+    const house = {
+        ...apiResponseJSON.data,
+        priceFormatted: Number(apiResponseJSON.data.price).toLocaleString('nl-NL')
+    };
+
     response.render('huis-detail.liquid', {
         title: 'Huis detail',
-        house: apiResponseJSON.data
+        house: house
     });
 });
 
@@ -70,7 +84,10 @@ app.post('/favorieten/:id', async function (request, response) {
 
     const apiResponseJSON = await apiResponse.json();
 
-    const house = apiResponseJSON.data;
+    const house = {
+        ...apiResponseJSON.data,
+        priceFormatted: Number(apiResponseJSON.data.price).toLocaleString('nl-NL')
+    };
 
     const bestaatAl = favorieten.find(function (favoriet) {
         return favoriet.id == house.id;
@@ -82,6 +99,7 @@ app.post('/favorieten/:id', async function (request, response) {
 
     response.redirect('/favorieten');
 });
+
 app.set('port', process.env.PORT || 8000);
 
 app.listen(app.get('port'), function () {
