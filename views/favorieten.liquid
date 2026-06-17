@@ -25,7 +25,7 @@
 
         {% if houses.size == 0 %}
 
-            <section class="empty-state">
+            <div class="empty-state">
                 <img
                     src="/style/assets/heart@2x.svg"
                     alt=""
@@ -43,11 +43,11 @@
                 <a href="/" class="search-button">
                     Start met zoeken
                 </a>
-            </section>
+            </div>
 
         {% else %}
 
-            <section class="houses-grid">
+            <div class="houses-grid">
                 {% for house in houses %}
                     <article class="house-card">
                         <a href="/huis-detail/{{ house.id }}">
@@ -109,7 +109,7 @@
                         </a>
                     </article>
                 {% endfor %}
-            </section>
+            </div>
 
         {% endif %}
 
