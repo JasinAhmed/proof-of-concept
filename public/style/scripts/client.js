@@ -4,14 +4,21 @@ const favoriteForm = document.querySelector('.favorite-form');
 // Ik pak de toast melding
 const successToast = document.querySelector('#successToast');
 
+// Ik pak de tekst in de toast melding
+const successToastTitle = document.querySelector('.success-toast-content strong');
+const successToastText = document.querySelector('.success-toast-content p');
+
 // Ik pak de sluitknop van de toast
 const successToastClose = document.querySelector('.success-toast-close');
 
 // Hier sla ik de timer op, zodat de toast vanzelf weer weggaat
 let toastTimer;
 
-// Deze functie laat de succesmelding zien
-function showSuccessToast() {
+// Deze functie laat de melding zien
+function showToast(title, text) {
+  successToastTitle.textContent = title;
+  successToastText.textContent = text;
+
   successToast.classList.add('show');
 
   clearTimeout(toastTimer);
@@ -42,7 +49,6 @@ if (favoriteForm) {
   // Als het huis al eerder is bewaard, zet ik de knop meteen op "Bewaard"
   if (localStorage.getItem(storageKey) === 'true') {
     favoriteButton.classList.add('is-favorite');
-    favoriteButton.disabled = true;
     favoriteHeart.textContent = '♥';
     favoriteText.textContent = 'Bewaard';
   }
@@ -50,8 +56,19 @@ if (favoriteForm) {
   favoriteForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    // Als het huis al is opgeslagen, mag je niet nog een keer opslaan
+    // Als het huis al is opgeslagen, haal ik hem weer uit favorieten
     if (localStorage.getItem(storageKey) === 'true') {
+      localStorage.removeItem(storageKey);
+
+      favoriteButton.classList.remove('is-favorite');
+      favoriteHeart.textContent = '♡';
+      favoriteText.textContent = 'Bewaren';
+
+      showToast(
+        'Woning verwijderd',
+        'Deze woning is uit je favorieten gehaald.'
+      );
+
       return;
     }
 
@@ -69,6 +86,7 @@ if (favoriteForm) {
 
     // Loading state weghalen
     favoriteButton.classList.remove('loading');
+    favoriteButton.disabled = false;
 
     // Als opslaan goed ging
     if (response.ok) {
@@ -80,7 +98,10 @@ if (favoriteForm) {
       favoriteHeart.textContent = '♥';
       favoriteText.textContent = 'Bewaard';
 
-      showSuccessToast();
+      showToast(
+        'Woning opgeslagen',
+        'Deze woning is toegevoegd aan je favorieten.'
+      );
 
       setTimeout(() => {
         favoriteButton.classList.remove('success');
@@ -89,7 +110,6 @@ if (favoriteForm) {
 
     // Als opslaan niet goed ging
     if (!response.ok) {
-      favoriteButton.disabled = false;
       favoriteText.textContent = 'Niet gelukt';
 
       setTimeout(() => {
