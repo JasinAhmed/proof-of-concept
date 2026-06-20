@@ -1,7 +1,7 @@
 {% render 'partials/head.liquid' %}
 {% render 'partials/header.liquid' %}
 
-<main>
+<main id="main">
 
   <nav class="breadcrumb">
     <a href="/">
@@ -11,6 +11,7 @@
         width="24"
         height="24"
       >
+      <span class="visually-hidden">Home</span>
     </a>
 
     <span>/</span>
@@ -25,7 +26,7 @@
     <img
       class="primary-image"
       src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=1200"
-      alt=""
+      alt="Hoofdfoto van woning aan {{ house.street }} {{ house.house_nr }}{{ house.nr_addition }} in {{ house.city }}"
       width="1200"
       height="800"
       fetchpriority="high"
@@ -35,7 +36,7 @@
       <img
         class="secondary-image"
         src="https://fdnd-agency.directus.app/assets/{{ image.directus_files_id }}?width=700"
-        alt=""
+        alt="Extra foto van woning aan {{ house.street }} {{ house.house_nr }}{{ house.nr_addition }} in {{ house.city }}"
         loading="lazy"
         width="700"
         height="500"
@@ -76,7 +77,7 @@
     <a href="#" class="media-thumb media-thumb-video">
       <img
         src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=350"
-        alt=""
+        alt="Video over woning aan {{ house.street }} {{ house.house_nr }}{{ house.nr_addition }} in {{ house.city }}"
         loading="lazy"
         width="350"
         height="250"
@@ -412,7 +413,7 @@
     </div>
 
     <button type="button" class="success-toast-close">
-      <span class="visually-hidden">Melding sluiten</span>
+      Sluiten
     </button>
   </div>
 
