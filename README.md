@@ -159,7 +159,9 @@ Browsers die deze functionaliteit niet ondersteunen tonen dezelfde content zonde
 
 **Video Scroll Driven Animations**
 
-*Voeg hier je video toe.*
+
+https://github.com/user-attachments/assets/9fb18abd-38b0-4bb2-b87f-d9bd0ceb9ecf
+
 
 ### Code
 
@@ -181,7 +183,9 @@ Dit is een voorbeeld van Progressive Enhancement waarbij moderne browsers een ri
 
 **Video View Transitions**
 
-*Voeg hier je video toe.*
+
+https://github.com/user-attachments/assets/da9cacb6-7d92-42c3-826c-5b6dcbc4eedc
+
 
 ### Code
 
