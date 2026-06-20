@@ -107,7 +107,7 @@ Daarnaast kunnen gebruikers woningen opslaan als favoriet.
 
 ### Code
 
-* Detailpagina: https://github.com/JasinAhmed/proof-of-concept/blob/998a366f536c4635952575035fc845b0b173083e/views/huis-detail.liquid#L1-L422
+ https://github.com/JasinAhmed/proof-of-concept/blob/998a366f536c4635952575035fc845b0b173083e/views/huis-detail.liquid#L1-L422
 
 ---
 
@@ -125,9 +125,8 @@ Wanneer een woning wordt opgeslagen wordt deze lokaal opgeslagen en ontvangt de 
 * Leeg-state wanneer geen favorieten aanwezig zijn
 
 ### Code
-
-* Favorietenpagina: https://github.com/JasinAhmed/proof-of-concept/blob/0569525012e087c28d784e38133e5002bac2764a/views/favorieten.liquid#L1-L120
-* Favorietenfunctionaliteit: https://github.com/JasinAhmed/proof-of-concept/blob/0569525012e087c28d784e38133e5002bac2764a/public/style/scripts/client.js#L1-L128
+ https://github.com/JasinAhmed/proof-of-concept/blob/0569525012e087c28d784e38133e5002bac2764a/views/favorieten.liquid#L1-L120
+ https://github.com/JasinAhmed/proof-of-concept/blob/0569525012e087c28d784e38133e5002bac2764a/public/style/scripts/client.js#L1-L128
 
 ---
 
