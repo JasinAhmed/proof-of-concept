@@ -107,7 +107,7 @@ Daarnaast kunnen gebruikers woningen opslaan als favoriet.
 
 ### Code
 
-* Detailpagina: https://github.com/JasinAhmed/proof-of-concept/blob/main/views/huis-detail.liquid
+* Detailpagina: https://github.com/JasinAhmed/proof-of-concept/blob/998a366f536c4635952575035fc845b0b173083e/views/huis-detail.liquid#L1-L422
 
 ---
 
