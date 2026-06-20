@@ -165,8 +165,7 @@ https://github.com/user-attachments/assets/9fb18abd-38b0-4bb2-b87f-d9bd0ceb9ecf
 
 ### Code
 
-* https://github.com/JasinAhmed/proof-of-concept/blob/main/public/style/style.css
-
+https://github.com/JasinAhmed/proof-of-concept/blob/f00766b896782fa40892ce1160a2c39d857dfd8a/public/style/style.css#L1263-L1322
 ---
 
 ## View Transitions
@@ -189,8 +188,7 @@ https://github.com/user-attachments/assets/da9cacb6-7d92-42c3-826c-5b6dcbc4eedc
 
 ### Code
 
-* https://github.com/JasinAhmed/proof-of-concept/blob/main/public/style/style.css
-
+https://github.com/JasinAhmed/proof-of-concept/blob/f00766b896782fa40892ce1160a2c39d857dfd8a/public/style/style.css#L1324-L1341
 ---
 
 # Browsercompatibiliteit
