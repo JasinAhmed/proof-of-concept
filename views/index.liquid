@@ -1,7 +1,7 @@
 {% render 'partials/head.liquid' %}
 {% render 'partials/header.liquid' %}
 
-<main class="houses-page">
+<main id="main" class="houses-page">
     <section class="houses-hero">
         <h1>Huizen te koop</h1>
 
@@ -31,7 +31,7 @@
                     <img
                         class="house-card-image"
                         src="https://fdnd-agency.directus.app/assets/{{ house.poster_image.id }}?width=600"
-                        alt=""
+                        alt="Woning aan {{ house.street }} {{ house.house_nr }}{{ house.nr_addition }} in {{ house.city }}"
                         loading="lazy"
                         width="600"
                         height="400"
