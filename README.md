@@ -76,8 +76,7 @@ Gebruikers kunnen:
 
 ### Code
 
-* Woningoverzicht: https://github.com/JasinAhmed/proof-of-concept/blob/main/views/index.liquid
-
+https://github.com/JasinAhmed/proof-of-concept/blob/44209ba5a3d0ab75d2cad49a96723f6e68dfef39/views/index.liquid#L1-L74
 ---
 
 # Woningdetailpagina
