@@ -32,6 +32,10 @@ https://proof-of-concept-uuxw.onrender.com/
 
 De opdracht was om een woningdetailpagina van Funda zo nauwkeurig mogelijk na te bouwen met behulp van server-side rendering en moderne webtechnieken.
 
+<img width="848" height="612" alt="image" src="https://github.com/user-attachments/assets/1f45dc9e-0f72-42d8-93c9-5a7efaac5c1d" />
+<img width="845" height="597" alt="image" src="https://github.com/user-attachments/assets/beb243c4-9c2f-48bf-9f11-4ffc5dfbcd19" />
+
+
 Tijdens de ontwikkeling zijn daarnaast extra functionaliteiten toegevoegd die niet binnen de oorspronkelijke opdracht vielen:
 
 * Woningoverzichtspagina
