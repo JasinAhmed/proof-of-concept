@@ -193,75 +193,35 @@ https://github.com/JasinAhmed/proof-of-concept/blob/f00766b896782fa40892ce1160a2
 
 # Browsercompatibiliteit
 
-De website is getest in meerdere browsers.
+De website is getest in:
 
-## Geteste browsers
+- Google Chrome
+- Mozilla Firefox
+- Microsoft Edge
+- Brave Browser
 
-* Google Chrome
-* Mozilla Firefox
-* Microsoft Edge
-* Brave Browser
+Tijdens deze tests is gekeken naar:
 
-### Chrome
-
-* Scroll Driven Animations werken
-* View Transitions werken
-* Favorietenfunctionaliteit werkt
-
-**Video Chrome**
-
-*Voeg hier je video toe.*
-
----
-
-### Firefox
-
-* Scroll Driven Animations worden niet ondersteund
-* View Transitions worden niet ondersteund
-* Website blijft volledig bruikbaar
-
-**Video Firefox**
-
-*Voeg hier je video toe.*
-
----
-
-### Edge
-
-* Scroll Driven Animations werken
-* View Transitions werken
-* Favorietenfunctionaliteit werkt
-
-**Video Edge**
-
-*Voeg hier je video toe.*
-
----
-
-### Brave
-
-* Scroll Driven Animations werken
-* View Transitions werken
-* Favorietenfunctionaliteit werkt
-
-**Video Brave**
-
-*Voeg hier je video toe.*
-
----
+- Scroll Driven Animations
+- View Transitions
+- Favorietenfunctionaliteit
+- Responsive layout
+- Algemene bruikbaarheid
 
 ## Resultaat
 
-| Functionaliteit          | Chrome | Edge | Brave | Firefox |
-| ------------------------ | ------ | ---- | ----- | ------- |
-| Scroll Driven Animations | ✅      | ✅    | ✅     | ❌       |
-| View Transitions         | ✅      | ✅    | ✅     | ❌       |
-| Favorietenfunctie        | ✅      | ✅    | ✅     | ✅       |
-| Responsive Layout        | ✅      | ✅    | ✅     | ✅       |
+| Functionaliteit | Chrome | Edge | Brave | Firefox |
+|----------------|---------|---------|---------|---------|
+| Scroll Driven Animations | ✅ | ✅ | ✅ | ❌ |
+| View Transitions | ✅ | ✅ | ✅ | ❌ |
+| Favorietenfunctie | ✅ | ✅ | ✅ | ✅ |
+| Responsive Layout | ✅ | ✅ | ✅ | ✅ |
 
 Firefox ondersteunt momenteel niet alle moderne CSS-functionaliteiten die gebruikt worden binnen dit project. Dankzij Progressive Enhancement blijft de website echter volledig bruikbaar.
 
----
+👉 Bekijk de volledige browsertest inclusief video's en bevindingen:
+
+[Browser Testing](https://github.com/JasinAhmed/proof-of-concept/issues/20)
 
 # Toegankelijkheid
 
