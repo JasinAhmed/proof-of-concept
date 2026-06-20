@@ -239,6 +239,22 @@ Tijdens het project zijn verschillende verbeteringen doorgevoerd:
 
 [WCAG Audit](https://github.com/JasinAhmed/proof-of-concept/issues/18)
 
+# Performance
+
+Er is een performance-audit uitgevoerd met behulp van Lighthouse.
+
+Hierbij is gekeken naar:
+
+- Performance
+- Best practices
+- SEO
+- Rendering
+- Gebruikerservaring
+
+👉 Bekijk de volledige performance-audit:
+
+[Performance Audit](https://github.com/JasinAhmed/proof-of-concept/issues/17)
+
 # Technische kenmerken
 
 ## HTML
