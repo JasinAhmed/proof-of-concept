@@ -225,32 +225,19 @@ Firefox ondersteunt momenteel niet alle moderne CSS-functionaliteiten die gebrui
 
 # Toegankelijkheid
 
-De website is getest met Lighthouse en handmatige toegankelijkheidscontroles.
+De website is getest met Lighthouse, handmatige controles en toetsenbordnavigatie.
 
 Tijdens het project zijn verschillende verbeteringen doorgevoerd:
 
-* Beschrijvende alt-teksten toegevoegd
-* Focus states toegevoegd
-* Toetsenbordnavigatie verbeterd
-* Formulieren correct gelabeld
-* Lege links verwijderd
-* Contrast gecontroleerd
+- Beschrijvende alt-teksten
+- Focus states
+- Toetsenbordtoegankelijkheid
+- Correcte formulierlabels
+- Verbeterde navigatie
 
-## Lighthouse
+👉 Bekijk de volledige toegankelijkheidsaudit:
 
-### Mobiel
-
-*Voeg hier je Lighthouse screenshot toe.*
-
-### Desktop
-
-*Voeg hier je Lighthouse screenshot toe.*
-
-Na het doorvoeren van de verbeteringen is de toegankelijkheidsscore verder gestegen.
-
-De website behaalt nog geen perfecte score doordat het contrast van de header bewust is overgenomen uit de originele Funda-stijl.
-
----
+[WCAG Audit](https://github.com/JasinAhmed/proof-of-concept/issues/18)
 
 # Technische kenmerken
 
