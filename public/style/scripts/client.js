@@ -16,6 +16,10 @@ const successToastTitle = document.querySelector('.success-toast-content strong'
 const successToastText = document.querySelector('.success-toast-content p');
 const successToastClose = document.querySelector('.success-toast-close');
 
+if (successToastClose && successToastClose.textContent.trim() === '') {
+  successToastClose.textContent = 'Sluiten';
+}
+
 let toastTimer;
 
 function showToast(title, text) {
