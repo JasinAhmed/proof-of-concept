@@ -126,8 +126,8 @@ Wanneer een woning wordt opgeslagen wordt deze lokaal opgeslagen en ontvangt de 
 
 ### Code
 
-* Favorietenpagina: https://github.com/JasinAhmed/proof-of-concept/blob/main/views/favorieten.liquid
-* Favorietenfunctionaliteit: https://github.com/JasinAhmed/proof-of-concept/blob/main/public/style/scripts/client.js
+* Favorietenpagina: https://github.com/JasinAhmed/proof-of-concept/blob/0569525012e087c28d784e38133e5002bac2764a/views/favorieten.liquid#L1-L120
+* Favorietenfunctionaliteit: https://github.com/JasinAhmed/proof-of-concept/blob/0569525012e087c28d784e38133e5002bac2764a/public/style/scripts/client.js#L1-L128
 
 ---
 
