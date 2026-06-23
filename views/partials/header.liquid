@@ -1,41 +1,64 @@
 <a class="skip-link" href="#main">Ga direct naar de inhoud</a>
 
 <header class="main-header">
+
   <nav class="main-nav">
     <ul class="main-nav-list">
 
+      <!-- Hamburger menu -->
       <li class="menu-list-item">
-        <button class="menu-button" popovertarget="mobile-menu">
+        <a href="#mobile-menu" class="menu-button">
           <span>Menu</span>
-        </button>
-      </li>
-
-      <li class="logo-item">
-        <a href="/">
-          <img class="funda-logo" src="/style/assets/Logo.svg" alt="Funda">
         </a>
       </li>
 
-      <li class="secondary-nav-item"><a href="/">Kopen</a></li>
-      <li class="secondary-nav-item"><a href="/">Huren</a></li>
-      <li class="secondary-nav-item"><a href="/">Verkopen</a></li>
-      <li class="secondary-nav-item"><a href="/">Nieuwbouw</a></li>
+      <!-- Logo -->
+      <li class="logo-item">
+        <a href="/">
+          <img
+            class="funda-logo"
+            src="/style/assets/Logo.svg"
+            alt="Funda">
+        </a>
+      </li>
 
+      <!-- Desktop navigatie -->
+      <li class="secondary-nav-item">
+        <a href="/">Kopen</a>
+      </li>
+
+      <li class="secondary-nav-item">
+        <a href="/">Huren</a>
+      </li>
+
+      <li class="secondary-nav-item">
+        <a href="/">Verkopen</a>
+      </li>
+
+      <li class="secondary-nav-item">
+        <a href="/">Nieuwbouw</a>
+      </li>
+
+      <!-- Mijn huis -->
       <li>
         <a href="/" class="home-link">
           <span>Mijn Huis</span>
         </a>
       </li>
 
+      <!-- Favorieten -->
       <li>
         <a href="/favorieten" class="favorites-link">
           <span>Favorieten</span>
         </a>
       </li>
 
+      <!-- Inloggen -->
       <li>
         <a href="/">
-          <img src="/style/assets/Account.svg" alt="">
+          <img
+            src="/style/assets/Account.svg"
+            alt="">
           <span>Inloggen</span>
         </a>
       </li>
@@ -43,10 +66,23 @@
     </ul>
   </nav>
 
-  <nav id="mobile-menu" class="mobile-menu" popover>
-    <a href="/">Kopen</a>
-    <a href="/">Huren</a>
-    <a href="/">Verkopen</a>
-    <a href="/">Nieuwbouw</a>
+  <!-- Mobiel menu -->
+  <nav id="mobile-menu" class="mobile-menu">
+
+    <a href="#" class="closemenu-btn">
+      ✕
+    </a>
+
+    <ul>
+      <li><a href="/">Kopen</a></li>
+      <li><a href="/">Huren</a></li>
+      <li><a href="/">Verkopen</a></li>
+      <li><a href="/">Nieuwbouw</a></li>
+      <li><a href="/favorieten">Favorieten</a></li>
+      <li><a href="/">Mijn Huis</a></li>
+      <li><a href="/">Inloggen</a></li>
+    </ul>
+
   </nav>
+
 </header>
