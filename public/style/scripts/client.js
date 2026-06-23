@@ -126,3 +126,19 @@ if (favoriteForm) {
     }
   });
 }
+// Mobiel menu - Progressive Enhancement
+const openMenuBtn = document.querySelector('.menu-button');
+const closeMenuBtn = document.querySelector('.closemenu-btn');
+const mobileMenu = document.querySelector('#mobile-menu');
+
+if (openMenuBtn && closeMenuBtn && mobileMenu) {
+  openMenuBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    mobileMenu.classList.add('menu-open');
+  });
+
+  closeMenuBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    mobileMenu.classList.remove('menu-open');
+  });
+}
